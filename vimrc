@@ -17,6 +17,7 @@ silent! call pathogen#infect()
 filetype plugin indent on         " Turn on file type detection.
 
 runtime macros/matchit.vim        " Load the matchit plugin.
+runtime macros/rails.vim        " Load the matchit plugin.
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -125,7 +126,7 @@ set laststatus=2
 "Will not work under Teminal.app on Mac OS X - causes certain colors and characters to 'flash'.
 set t_Co=256
 
-" syntax enable                     " Turn on syntax highlighting (compare with syntax on below)
+syntax enable                     " Turn on syntax highlighting (compare with syntax on below)
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
@@ -140,7 +141,7 @@ if &diff
 endif
 
 " Color scheme
-colorscheme daring-dark 
+colorscheme vividchalk 
 highlight NonText guibg=#060606
 highlight Folded  guibg=#0A0A0A guifg=#9090D0
 
@@ -160,7 +161,7 @@ set listchars=tab:>-,trail:.,extends:>
 
 " Useful status information at bottom of screen
 "set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%{exists('g:loaded_rvm')?rvm#statusline():''}%=%-16(\ %l,%c-%v\ %)%P
+"set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%{exists('g:loaded_rvm')?rvm#statusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""
