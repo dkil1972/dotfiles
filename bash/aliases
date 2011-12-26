@@ -48,12 +48,12 @@ alias gcob="git checkout -b"
 alias gm="git merge"
 alias gr="git rebase"
 alias gl="git log"
-alias gs="git status"
 alias gsh="git show"
 alias gd="git diff"
 alias gbl="git blame"
 alias gps="git push"
 alias gpl="git pull"
+alias gpd="git push origin develop"
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 
 # Ruby
@@ -64,6 +64,14 @@ alias rkt="rake -T | mate"
 alias b="bundle"
 alias be="bundle exec"
 alias bi="bundle install"
+
+#heroku
+alias hld="heroku logs --app saidyes-demo"
+alias hls="heroku logs --app saidyes-staging"
+alias hlp="heroku logs --app saidyes"
+alias hcd="heroku console --app saidyes-demo"
+alias hcs="heroku console --app saidyes-staging"
+alias hcp="heroku console --app saidyes"
 
 # Rails
 # console
@@ -91,6 +99,13 @@ function sg() {
   fi
 }
 
+#rspec
+function rsn() {
+  rspec "$1" -cf nested
+}
+
+alias rs="rspec"
+
 # other
 alias rkdm="rake db:migrate"
 alias rkdmr="rake db:migrate:redo"
@@ -98,7 +113,9 @@ alias rkdr="rake db:rollback"
 alias rkdc="rake db:create"
 alias rklc="rake log:clear"
 alias rkr="rake routes | vim"
-
+alias rdd="rake demo deploy"
+alias rsd="rake staging deploy"
+alias rpd="rake production deploy"
 
 # alternative to "rails" command to use templates
 #function railsapp {

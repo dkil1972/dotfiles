@@ -5,5 +5,5 @@
 set guioptions-=T " hide toolbar
 set lines=45 columns=140 
 winpos 30 1021 
-set guifont=Monaco:h18
+set guifont=Droid\ Sans\ Mono
 " set guifont=Lucida_Console:h11

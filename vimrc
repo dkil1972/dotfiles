@@ -37,6 +37,8 @@ set nowrap			  " Switch wrap off for everything
 set scrolloff=3                   " Show 3 lines of context around the cursor.
 set title                         " Set the terminal's title
 set cpoptions+=$                  " Places a dollar sign at the end of the 'to be' changed text.
+set gcr=n-c-v:block-nCursor
+set gcr=i-ci:Cursor
 
 " Tab completion options
 " (only complete to the longest unambiguous match, and show a menu)
@@ -52,7 +54,7 @@ set smartcase
 set number
 set numberwidth=5
 
-"mark syntax errors with :signs
+mark syntax errors with :signs
 let g:syntastic_enable_signs=1
 
 " Don't use Ex mode, use Q for formatting
@@ -342,7 +344,8 @@ nmap <Leader>md :%!/usr/local/bin/Markdown.pl --html4tags<CR>
 
 " For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
 " autocmd BufNewFile,BufRead *_spec.rb compiler rspec
-
+set guicursor=n-v-c:block-Cursor
+set guicursor+=i:ver100-iCursor
 " Local config
 if filereadable(".vimrc.local")
   source .vimrc.local
