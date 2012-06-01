@@ -1,8 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/dermot/development/projects/Ruby/RapidFTR'
-let g:netrw_dirhist_2='/home/dermot/development/projects/Ruby/rails/saidyes'
-let g:netrw_dirhist_3='/home/dermot/dotfiles/vim'
-let g:netrw_dirhist_4='/home/dermot/dotfiles'
-let g:netrw_dirhist_5='/home/dermot/dotfiles/vim'
-let g:netrw_dirhist_6='/home/dermot/development/projects/Ruby/rails/workbench/pivotal_story_map_spike/.git'
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/dermot/.dotfiles/vim/bundle/pathogen'
+let g:netrw_dirhist_2='/home/dermot/.dotfiles/vim/bundle'
+let g:netrw_dirhist_3='/home/dermot/.dotfiles/vim/bundle/pathogen'
