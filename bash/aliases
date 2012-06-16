@@ -24,8 +24,10 @@ alias ..3="cd ../../.."
 alias ..4="cd ../../../.."
 alias ..5="cd ../../../../.."
 alias sy='cd ~/development/projects/Ruby/rails/saidyes'
+alias df='cd ~/.dotfiles/'
 alias hm='cd ~'
 
+alias ea='vim ~/.dotfiles/bash/aliases'
 
 # changing directory to project
 function p { cd ~/Projects/$1; }
@@ -53,7 +55,7 @@ alias gd="git diff"
 alias gbl="git blame"
 alias gps="git push"
 alias gpl="git pull"
-alias gpd="git push origin develop"
+alias gpm="git push origin master"
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 
 # Ruby
@@ -116,6 +118,8 @@ alias rkr="rake routes | vim"
 alias rdd="rake demo deploy"
 alias rsd="rake staging deploy"
 alias rpd="rake production deploy"
+alias ctl="cat /dev/null > log/test.log"
+alias cdl="cat /dev/null > log/development.log"
 
 # alternative to "rails" command to use templates
 #function railsapp {

@@ -325,6 +325,9 @@ nmap <F9> :set invnumber<CR>
 "Set F9 to toggle paste mode in insert mode.
 set pastetoggle=<F9>
 
+vmap <C-c> :<Esc>`>a<CR><Esc>mx`<i<CR><Esc>my'xk$v'y!xclip -selection c<CR>u
+map <Insert> :set paste<CR>i<CR><CR><Esc>k:.!xclip -o<CR>JxkJx:set nopaste<CR>
+
 "Markdown to HTML  
 nmap <Leader>md :%!/usr/local/bin/Markdown.pl --html4tags<CR>
 
