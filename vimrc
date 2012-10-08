@@ -173,9 +173,9 @@ set listchars=tab:>-,trail:.,extends:>
 let mapleader = ","
 
 "all Enter to be used to create a new blank line and return to normal mode.
-map <CR> O<Esc>j
-map <S-Enter> o<Esc>k
-
+map <CR> o<Esc>
+map <C-d> VYp
+map <S-Enter> O<Esc>j
 
 "map toggle vertical split for NERDTree
 map <F2> :NERDTreeToggle<CR>
@@ -300,6 +300,7 @@ endif
 
 " Snippets are activated by Shift+Tab
 let g:snippetsEmu_key = "<S-Tab>"
+let g:snippets_dir = "~/.vim/bundle/snipmate/snippets"
 
 " Tags
 let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"

@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/home/dermot/.dotfiles/vim/bundle/pathogen'
 let g:netrw_dirhist_2='/home/dermot/.dotfiles/vim/bundle'
 let g:netrw_dirhist_3='/home/dermot/.dotfiles/vim/bundle/pathogen'
+let g:netrw_dirhist_4='/home/dermot/.rbenv/versions/1.9.2-p320/lib/ruby/gems/1.9.1/gems/spreadsheet-0.7.3/lib/spreadsheet'

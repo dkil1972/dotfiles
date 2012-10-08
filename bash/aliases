@@ -23,16 +23,16 @@ alias ..2="cd ../.."
 alias ..3="cd ../../.."
 alias ..4="cd ../../../.."
 alias ..5="cd ../../../../.."
-alias sy='cd ~/development/projects/Ruby/rails/saidyes'
 alias df='cd ~/.dotfiles/'
-alias hm='cd ~'
 
 alias ea='vim ~/.dotfiles/bash/aliases'
+alias cac='c availability_checker'
+alias caca='c availability_checker_admin'
 
 # changing directory to project
 function p { cd ~/Projects/$1; }
 # changing directory to code project
-function c { cd ~/Code/$1; }
+function c { cd ~/development/projects/Ruby/rails/$1; }
 # changing directory to scripts
 function s { cd ~/Scripts/$1; }
 
@@ -103,7 +103,7 @@ function sg() {
 
 #rspec
 function rsn() {
-  rspec "$1" -cf nested
+  rspec --drb -cf nested "$1"
 }
 
 alias rs="rspec"
@@ -131,3 +131,5 @@ alias cdl="cat /dev/null > log/development.log"
 
 # misc
 alias rl='. ~/.bash_profile'
+alias open='gnome-open'
+alias ks='killall -9 skype'
