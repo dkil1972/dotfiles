@@ -129,7 +129,10 @@ alias cdl="cat /dev/null > log/development.log"
 #  rails $appname -m http://github.com/ryanb/rails-templates/raw/master/$template.rb $@
 #}
 
+# opening applications and directorys 
+alias open='gnome-open'
+alias dbox='gnome-open ~/Dropbox/'
+
 # misc
 alias rl='. ~/.bash_profile'
-alias open='gnome-open'
 alias ks='killall -9 skype'
