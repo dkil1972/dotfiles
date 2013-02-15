@@ -27,12 +27,12 @@ alias df='cd ~/.dotfiles/'
 
 alias ea='vim ~/.dotfiles/bash/aliases'
 alias cac='c availability_checker'
-alias caca='c availability_checker_admin'
+alias aca='c availability_checker_admin'
 
 # changing directory to project
 function p { cd ~/Projects/$1; }
 # changing directory to code project
-function c { cd ~/development/projects/Ruby/rails/$1; }
+function c { cd ~/projects/$1; }
 # changing directory to scripts
 function s { cd ~/Scripts/$1; }
 
@@ -128,6 +128,13 @@ alias cdl="cat /dev/null > log/development.log"
 #  shift 2
 #  rails $appname -m http://github.com/ryanb/rails-templates/raw/master/$template.rb $@
 #}
+
+#rbenv
+alias rv='rbenv versions'
+function rgc() {
+  rbenv gemset create "$1" "$2"
+}
+
 
 # opening applications and directorys 
 alias open='gnome-open'

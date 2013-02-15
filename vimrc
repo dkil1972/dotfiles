@@ -37,7 +37,7 @@ set nowrap			  " Switch wrap off for everything
 set scrolloff=3                   " Show 3 lines of context around the cursor.
 set title                         " Set the terminal's title
 set cpoptions+=$                  " Places a dollar sign at the end of the 'to be' changed text.
-set gcr=n-c-v:block-nCursor
+set gcr=n-c-v:nCursor
 set gcr=i-ci:Cursor
 
 " Tab completion options
@@ -114,9 +114,9 @@ if has("folding")
 endif
 
 " Softtabs, 2 spaces
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 
 " Always display the status line
@@ -182,7 +182,7 @@ map <F2> :NERDTreeToggle<CR>
 
 
 "Map spacebar to buffer explorer.
-nmap <Space> <leader>be
+nmap <F3> <leader>be
 
 
 "Map <Esc> to <Esc>`^ which will prevent the curser from moving back a space
@@ -201,6 +201,7 @@ vnoremap X "_X
 "toggle.
 "set pastetoggle=<F2>
 
+map <leader>t :tag
 
 " Tab mappings.
 map <leader>tt :tabnew<cr>
@@ -216,7 +217,6 @@ imap <Tab> <C-N>
 imap <S-Tab> <C-P>
 vmap <Tab> >gv
 vmap <S-Tab> <gv
-nmap <S-Tab> <C-W><C-W>
 
 
 "Use CTRL-S for saving, also in Insert mode
@@ -245,6 +245,15 @@ map <Leader>sv :RSview
 map <Leader>su :RSunittest 
 map <Leader>sf :RSfunctionaltest 
 
+map <Leader>; :call RunTest("") 
+map <Leader>' :call RunTestFile("") 
+
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-h> <C-W>h
+map <C-k> <C-W>k
+map <C-l> <C-W>l
+
 " Hide search highlighting
 map <Leader>h :set invhls <CR>
 
@@ -257,8 +266,12 @@ map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 " Move lines up and down
-map <C-J> :m +1 <CR>
-map <C-K> :m -2 <CR>
+"map <C-J> :m +1 <CR>
+"map <C-K> :m -2 <CR>
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " Inserts the path of the currently edited file into a command
 " Command mode: Ctrl+P
@@ -333,7 +346,7 @@ map <Insert> :set paste<CR>i<CR><CR><Esc>k:.!xclip -o<CR>JxkJx:set nopaste<CR>
 nmap <Leader>md :%!/usr/local/bin/Markdown.pl --html4tags<CR>
 
 " Uncomment to use Jamis Buck's file opening plugin
-"map <Leader>t :FuzzyFinderTextMate<Enter>
+" map <Leader>t :FuzzyFinderTextMate<Enter>
 
 " Controversial...swap colon and semicolon for easier commands
 "nnoremap ; :
@@ -348,8 +361,17 @@ nmap <Leader>md :%!/usr/local/bin/Markdown.pl --html4tags<CR>
 
 " For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
 " autocmd BufNewFile,BufRead *_spec.rb compiler rspec
+highlight Cursor guifg=white guibg=gray
+highlight iCursor guifg=white guibg=steelblue
 set guicursor=n-v-c:block-Cursor
-set guicursor+=i:ver100-iCursor
+set guicursor+=i:iCursor
+set guicursor+=n-v-c:blinkon0
+set guicursor+=i:blinkwait10
+
+let Tlist_Ctags_Cmd = "/usr/bin/ctags"
+let Tlist_WinWidth = 50
+map <F4> :TlistToggle<cr>
+map <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 " Local config
 if filereadable(".vimrc.local")
   source .vimrc.local
