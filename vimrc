@@ -181,8 +181,9 @@ map <S-Enter> O<Esc>j
 map <F2> :NERDTreeToggle<CR>
 
 
-"Map spacebar to buffer explorer.
+"Map F3 to buffer explorer.
 nmap <F3> <leader>be
+nmap <leader>, <C-^>
 
 
 "Map <Esc> to <Esc>`^ which will prevent the curser from moving back a space
@@ -200,8 +201,6 @@ vnoremap X "_X
 "NOTE: This has been set above at F9 - and F2 has been remapped to NERDTree
 "toggle.
 "set pastetoggle=<F2>
-
-map <leader>t :tag
 
 " Tab mappings.
 map <leader>tt :tabnew<cr>
@@ -225,6 +224,7 @@ noremap <C-s> :update<CR>
 cnoremap <C-s> <Esc>:update<CR>
 inoremap <C-s> <Esc>:update<CR>
 
+
 " Edit the README_FOR_APP (makes :R commands work)
 map <Leader>R :e doc/README_FOR_APP<CR>
 
@@ -234,6 +234,7 @@ map <Leader>c :Rcontroller
 map <Leader>v :Rview 
 map <Leader>u :Runittest 
 map <Leader>f :Rfunctionaltest 
+map <Leader>l :Rlayout 
 map <Leader>tm :RTmodel 
 map <Leader>tc :RTcontroller 
 map <Leader>tv :RTview 
@@ -258,12 +259,17 @@ map <C-l> <C-W>l
 map <Leader>h :set invhls <CR>
 
 " Opens an edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>e
-map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+" Normal mode: %%
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+map <leader>e :edit %%
 
-" Opens a tab edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>t
-map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
+set winwidth=84
+" We have to have a winheight bigger than we want to set winminheight. But if
+" we set winheight to be huge before winminheight, the winminheight set will
+" fail.
+set winheight=5
+set winminheight=5
+set winheight=999
 
 " Move lines up and down
 "map <C-J> :m +1 <CR>
@@ -276,10 +282,6 @@ vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 " Inserts the path of the currently edited file into a command
 " Command mode: Ctrl+P
 cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-
-" Duplicate a selection
-" Visual mode: D
-vmap D y'>p
 
 " Press Shift+P while in visual mode to replace the selection without
 " overwriting the default register
@@ -376,3 +378,44 @@ map <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 if filereadable(".vimrc.local")
   source .vimrc.local
 endif
+
+function! RunTests(filename)
+    " Write the file and run tests for the given filename
+    :w
+    :silent !echo;echo;echo;echo;echo
+    exec ":!bundle exec rspec --drb -cf nested " . a:filename
+endfunction
+
+function! SetTestFile()
+    " Set the spec file that tests will be run for.
+    let t:grb_test_file=@%
+endfunction
+
+function! RunTestFile(...)
+    if a:0
+        let command_suffix = a:1
+    else
+        let command_suffix = ""
+    endif
+
+    " Run the tests for the previously-marked file.
+    let in_spec_file = match(expand("%"), '_spec.rb$') != -1
+    if in_spec_file
+        call SetTestFile()
+    elseif !exists("t:grb_test_file")
+        return
+    end
+    call RunTests(t:grb_test_file . command_suffix)
+endfunction
+
+function! RunNearestTest()
+    let spec_line_number = line('.')
+    call RunTestFile(":" . spec_line_number)
+endfunction
+
+" Run this file
+map <leader>t :call RunTestFile()<cr>
+" Run only the example under the cursor
+map <leader>T :call RunNearestTest()<cr>
+" Run all test files
+map <leader>a :call RunTests('spec/')<cr>
