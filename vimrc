@@ -1,18 +1,10 @@
-" based on http://github.com/jferris/config_files/blob/master/vimrc
-" based on Peecode vim-full sample
-" based on http://www.pixelbeat.org/settings/.vimrc
-
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
-
-" Source pathogen. In this case it's in a bundle directory and not the 
-" Vim autoload directory (and is managed as a git subrepository) 
 source ~/.vim/bundle/pathogen/autoload/pathogen.vim
+call pathogen#runtime_append_all_bundles()
+set nocompatible
 
 " Now call pathogen
 silent! call pathogen#infect()
-" silent! call pathogen#helptags()
+silent! call pathogen#helptags()
 
 filetype plugin indent on         " Turn on file type detection.
 
@@ -217,14 +209,6 @@ imap <S-Tab> <C-P>
 vmap <Tab> >gv
 vmap <S-Tab> <gv
 
-
-"Use CTRL-S for saving, also in Insert mode
-"Requires bash$ stty -ixon -ixoff to capture Ctrl-S
-noremap <C-s> :update<CR>
-cnoremap <C-s> <Esc>:update<CR>
-inoremap <C-s> <Esc>:update<CR>
-
-
 " Edit the README_FOR_APP (makes :R commands work)
 map <Leader>R :e doc/README_FOR_APP<CR>
 
@@ -249,7 +233,6 @@ map <Leader>sf :RSfunctionaltest
 map <Leader>; :call RunTest("") 
 map <Leader>' :call RunTestFile("") 
 
-" Smart way to move between windows
 map <C-j> <C-W>j
 map <C-h> <C-W>h
 map <C-k> <C-W>k
@@ -279,14 +262,6 @@ nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
-" Inserts the path of the currently edited file into a command
-" Command mode: Ctrl+P
-cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-
-" Press Shift+P while in visual mode to replace the selection without
-" overwriting the default register
-vmap P p :call setreg('"', getreg('0')) <CR>
-
 " For Haml
 au! BufRead,BufNewFile *.haml         setfiletype haml
 
@@ -301,9 +276,6 @@ imap <Tab> <C-N>
 
 imap <C-L> <Space>=><Space>
 
-" Display extra whitespace
-" set list listchars=tab:»·,trail:·
-
 " Edit routes
 command! Rroutes :e config/routes.rb
 command! Rschema :e db/schema.rb
@@ -317,29 +289,7 @@ endif
 let g:snippetsEmu_key = "<S-Tab>"
 let g:snippets_dir = "~/.vim/bundle/snipmate/snippets"
 
-" Tags
-let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
-set tags=./tags;
-
 let g:fuf_splitPathMatching=1
-
-" Open URL
-command -bar -nargs=1 OpenURL :!open <args>
-function! OpenURL()
-  let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;:]*')
-  echo s:uri
-  if s:uri != ""
-	  exec "!open \"" . s:uri . "\""
-  else
-	  echo "No URI found in line."
-  endif
-endfunction
-map <Leader>w :call OpenURL()<CR>
-
-"Set F9 to toggle line numbers in normal mode
-nmap <F9> :set invnumber<CR>
-"Set F9 to toggle paste mode in insert mode.
-set pastetoggle=<F9>
 
 vmap <C-c> :<Esc>`>a<CR><Esc>mx`<i<CR><Esc>my'xk$v'y!xclip -selection c<CR>u
 map <Insert> :set paste<CR>i<CR><CR><Esc>k:.!xclip -o<CR>JxkJx:set nopaste<CR>
@@ -347,22 +297,6 @@ map <Insert> :set paste<CR>i<CR><CR><Esc>k:.!xclip -o<CR>JxkJx:set nopaste<CR>
 "Markdown to HTML  
 nmap <Leader>md :%!/usr/local/bin/Markdown.pl --html4tags<CR>
 
-" Uncomment to use Jamis Buck's file opening plugin
-" map <Leader>t :FuzzyFinderTextMate<Enter>
-
-" Controversial...swap colon and semicolon for easier commands
-"nnoremap ; :
-"nnoremap : ;
-
-"vnoremap ; :
-"vnoremap : ;
-
-" Automatic fold settings for specific files. Uncomment to use.
-" autocmd FileType ruby setlocal foldmethod=syntax
-" autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
-
-" For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
-" autocmd BufNewFile,BufRead *_spec.rb compiler rspec
 highlight Cursor guifg=white guibg=gray
 highlight iCursor guifg=white guibg=steelblue
 set guicursor=n-v-c:block-Cursor
@@ -379,6 +313,34 @@ if filereadable(".vimrc.local")
   source .vimrc.local
 endif
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RENAME CURRENT FILE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
+endfunction
+map <leader>n :call RenameFile()<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" COMMAND T
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Open files with <leader>f
+map <leader>gf :CommandTFlush<cr>\|:CommandT<cr>
+" Open files, limited to the directory of the current file, with <leader>gf
+" This requires the %% mapping found below.
+map <leader>f :CommandTFlush<cr>\|:CommandT %%<cr>
+" Esc not working properly out of the box
+let g:CommandTCancelMap=['<ESC>','<C-c>']
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" TESTING
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! RunTests(filename)
     " Write the file and run tests for the given filename
     :w
