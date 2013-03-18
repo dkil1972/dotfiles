@@ -211,27 +211,21 @@ map <leader>n :call RenameFile()<cr>
 " COMMAND T
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Open files with <leader>f
-map <leader>gf :CommandTFlush<cr>\|:CommandT<cr>
+map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 " Open files, limited to the directory of the current file, with <leader>gf
 " This requires the %% mapping found below.
-map <leader>f :CommandTFlush<cr>\|:CommandT %%<cr>
+map <leader>gf :CommandTFlush<cr>\|:CommandT %%<cr>
 " Esc not working properly out of the box
 let g:CommandTCancelMap=['<ESC>','<C-c>']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" TESTING
+" RUNNING TESTS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! RunTests(filename)
-    " Write the file and run tests for the given filename
-    :w
-    :silent !echo;echo;echo;echo;echo
-    exec ":!bundle exec rspec --drb -cf nested " . a:filename
-endfunction
-
-function! SetTestFile()
-    " Set the spec file that tests will be run for.
-    let t:grb_test_file=@%
-endfunction
+map <leader>t :call RunTestFile()<cr>
+map <leader>T :call RunNearestTest()<cr>
+map <leader>a :call RunTests('')<cr>
+map <leader>c :w\|:!script/features<cr>
+map <leader>w :w\|:!script/features --profile wip<cr>
 
 function! RunTestFile(...)
     if a:0
@@ -241,8 +235,8 @@ function! RunTestFile(...)
     endif
 
     " Run the tests for the previously-marked file.
-    let in_spec_file = match(expand("%"), '_spec.rb$') != -1
-    if in_spec_file
+    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
+    if in_test_file
         call SetTestFile()
     elseif !exists("t:grb_test_file")
         return
@@ -252,16 +246,35 @@ endfunction
 
 function! RunNearestTest()
     let spec_line_number = line('.')
-    call RunTestFile(":" . spec_line_number)
+    call RunTestFile(":" . spec_line_number . " -b")
 endfunction
 
-" Run this file
-map <leader>t :call RunTestFile()<cr>
-" Run only the example under the cursor
-map <leader>T :call RunNearestTest()<cr>
-" Run all test files
-map <leader>a :call RunTests('spec/')<cr>
+function! SetTestFile()
+    " Set the spec file that tests will be run for.
+    let t:grb_test_file=@%
+endfunction
 
+function! RunTests(filename)
+    " Write the file and run tests for the given filename
+    :w
+    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+    if match(a:filename, '\.feature$') != -1
+        exec ":!script/features " . a:filename
+    else
+        if filereadable("script/test")
+            exec ":!script/test " . a:filename
+        elseif filereadable("Gemfile")
+            exec ":!bundle exec rspec --color " . a:filename
+        else
+            exec ":!rspec --color " . a:filename
+        end
+    end
+endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SNIPPETS 
@@ -281,7 +294,7 @@ map <Leader>m :Rmodel
 map <Leader>c :Rcontroller 
 map <Leader>v :Rview 
 map <Leader>u :Runittest 
-map <Leader>f :Rfunctionaltest 
+map <Leader>rf :Rfunctionaltest 
 map <Leader>l :Rlayout 
 map <Leader>tm :RTmodel 
 map <Leader>tc :RTcontroller 
