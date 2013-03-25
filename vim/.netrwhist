@@ -1,7 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/home/dermot/.rbenv/versions/1.9.3-p194/gemsets/workbench-gems/gems/compass_twitter_bootstrap-2.2.2.2'
 let g:netrw_dirhist_2='/home/dermot/.rbenv/versions/1.9.3-p194/gemsets/workbench-gems/gems'
 let g:netrw_dirhist_3='/home/dermot/.rbenv/versions'
 let g:netrw_dirhist_4='/home/dermot/.rbenv/versions/1.9.3-p194/gemsets/ie-admin-gems/gems/compass_twitter_bootstrap-2.2.2.2'
 let g:netrw_dirhist_5='/home/dermot/.rbenv/versions/1.9.3-p194/gemsets/ie-admin-gems/gems'
+let g:netrw_dirhist_6='/home/dermot/.rbenv/versions/1.9.3-p194/gemsets/availability_checker/gems'
