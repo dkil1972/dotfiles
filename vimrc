@@ -1,5 +1,5 @@
 source ~/.vim/bundle/pathogen/autoload/pathogen.vim
-call pathogen#runtime_append_all_bundles()
+call pathogen#incubate()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
@@ -123,7 +123,7 @@ if &diff
 endif
 
 " Color scheme
-colorscheme vividchalk 
+colorscheme distinguished
 highlight NonText guibg=#060606
 highlight Folded  guibg=#0A0A0A guifg=#9090D0
 
@@ -315,7 +315,6 @@ map <C-j> <C-W>j
 map <C-h> <C-W>h
 map <C-k> <C-W>k
 map <C-l> <C-W>l
-map <F2> :NERDTreeToggle<CR>
 nmap <F3> <leader>be
 " Move lines up and down
 map <C-U> :m +1 <CR>
