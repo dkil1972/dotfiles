@@ -15,57 +15,20 @@ else
   alias l='ls -lAh'
 fi
 
-alias ll="ls -l"
-alias la='ls -A'
-alias cl="clear"
-alias ..="cd .."
-alias ..2="cd ../.."
-alias ..3="cd ../../.."
-alias ..4="cd ../../../.."
-alias ..5="cd ../../../../.."
+alias sr="screen -r"
 alias df='cd ~/.dotfiles/'
 
-alias ea='vim ~/.dotfiles/bash/aliases'
-alias cac='c availability_checker'
-alias aca='c availability_checker_admin'
+#ssh logins
+alias si="ssh -p 47926 invokoco@invoko.co.uk"
+alias spla="ssh publandl@ramjet.3v0.net"
 
+alias ea='vim ~/.dotfiles/bash/aliases'
 # changing directory to project
-function p { cd ~/Projects/$1; }
-# changing directory to code project
-function c { cd ~/projects/$1; }
-# changing directory to scripts
-function s { cd ~/Scripts/$1; }
+function p { cd ~/dev/$1; }
+function biz { ruby ~/1025.rb "$1" "$2" "$3"; }
 
 # Git
-alias g="git status"
-alias ga="git add"
-alias gaa="git add --all"
-alias gc="git commit -m"
-alias gca="git commit -am"
-alias gb="git branch"
-alias gba="git branch -a"
-alias gbd="git branch -d"
-alias gco="git checkout"
-alias gcob="git checkout -b"
-alias gm="git merge"
-alias gr="git rebase"
-alias gl="git log"
-alias gsh="git show"
-alias gd="git diff"
-alias gbl="git blame"
-alias gps="git push"
-alias gpl="git pull"
-alias gpm="git push origin master"
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
-
-# Ruby
-alias r="ruby"
-alias i="irb"
-alias rk="rake"
-alias rkt="rake -T | mate"
-alias b="bundle"
-alias be="bundle exec"
-alias bi="bundle install"
 
 #heroku
 alias hld="heroku logs --app saidyes-demo"
@@ -75,31 +38,9 @@ alias hcd="heroku console --app saidyes-demo"
 alias hcs="heroku console --app saidyes-staging"
 alias hcp="heroku console --app saidyes"
 
-# Rails
-# console
-function sc() {
-  if [ -x script/rails ]; then
-    script/rails console $1
-  else
-    script/console $1
-  fi
-}
-# server
-function ss() {
-  if [ -x script/rails ]; then
-    script/rails server thin $@
-  else
-    script/server $@
-  fi
-}
-# generator
-function sg() {
-  if [ -x script/rails ]; then
-    script/rails generate $@
-  else
-    script/generate $@
-  fi
-}
+#mongo
+alias m3="/usr/local/Cellar/mongodb/3.0.2/bin/mongo"
+alias mi3="/usr/local/Cellar/mongodb/3.0.2/bin/mongoimport"
 
 #rspec
 function rsn() {
@@ -108,16 +49,6 @@ function rsn() {
 
 alias rs="rspec"
 
-# other
-alias rkdm="rake db:migrate"
-alias rkdmr="rake db:migrate:redo"
-alias rkdr="rake db:rollback"
-alias rkdc="rake db:create"
-alias rklc="rake log:clear"
-alias rkr="rake routes | vim"
-alias rdd="rake demo deploy"
-alias rsd="rake staging deploy"
-alias rpd="rake production deploy"
 alias ctl="cat /dev/null > log/test.log"
 alias cdl="cat /dev/null > log/development.log"
 

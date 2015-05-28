@@ -102,5 +102,4 @@ fi
 [[ -s "$HOME/.dotfiles/bash/functions/ps1_functions" ]] && source "$HOME/.dotfiles/bash/functions/ps1_functions"
 ps1_set --prompt ∴
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+export PATH=$PATH:/usr/local/heroku/bin:/usr/local/Cellar/mongodb/3.0.2/bin

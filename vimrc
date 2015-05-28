@@ -1,6 +1,3 @@
-source ~/.vim/bundle/pathogen/autoload/pathogen.vim
-call pathogen#incubate()
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -12,12 +9,7 @@ silent! call pathogen#helptags()
 
 filetype plugin indent on         " Turn on file type detection.
 
-runtime macros/matchit.vim        " Load the matchit plugin.
-runtime macros/rails.vim        " Load the matchit plugin.
-
-" allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-" Softtabs, 2 spaces
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
@@ -25,9 +17,6 @@ set expandtab
 " Always display the status line
 set laststatus=2
 set visualbell                    " No beeping.
-set nobackup			  " No automatic backups
-set nowritebackup
-set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
 set history=1000			  " keep 50 lines of command line history
 set ruler			  " show the cursor position all the time
 set showcmd			  " display incomplete commands
@@ -39,26 +28,13 @@ set nowrap			  " Switch wrap off for everything
 set scrolloff=3                   " Show 3 lines of context around the cursor.
 set title                         " Set the terminal's title
 set cpoptions+=$                  " Places a dollar sign at the end of the 'to be' changed text.
-set gcr=n-c-v:nCursor
-set gcr=i-ci:Cursor
-" Tab completion options
-" (only complete to the longest unambiguous match, and show a menu)
-" set completeopt=longest,menu
-set wildmode=longest,list
-" set complete=.,t
 " case only matters with mixed case expressions
 set ignorecase
 set smartcase
 " Numbers
 set number
 set numberwidth=5
-set winwidth=84
-" We have to have a winheight bigger than we want to set winminheight. But if
-" we set winheight to be huge before winminheight, the winminheight set will
-" fail.
-set winheight=5
-set winminheight=5
-set winheight=999
+
 let mapleader = ","
 
 " Only do this part when compiled with support for autocommands.
@@ -149,31 +125,19 @@ map <S-Enter> O<Esc>j
 "allow deleting selection without updating the clipboard (yank buffer)
 vnoremap x "_x
 vnoremap X "_X
-nmap <leader>, <C-^>
 vmap <Tab> >gv
 vmap <S-Tab> <gv
-" Hide search highlighting
-map <Leader>h :set invhls <CR>
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: %%
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
-map <leader>e :edit %%
-
-
 
 " For Haml
 au! BufRead,BufNewFile *.haml         setfiletype haml
 
 " No Help, please
 nmap <F1> <Esc>
-" Press ^F from insert mode to insert the current file name
-imap <C-F> <C-R>=expand("%")<CR>
-
 " Maps autocomplete to tab
 imap <Tab> <C-N>
-
-imap <C-L> <Space>=><Space>
-
 
 let g:fuf_splitPathMatching=1
 
@@ -218,95 +182,22 @@ map <leader>gf :CommandTFlush<cr>\|:CommandT %%<cr>
 " Esc not working properly out of the box
 let g:CommandTCancelMap=['<ESC>','<C-c>']
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RUNNING TESTS
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>t :call RunTestFile()<cr>
-map <leader>T :call RunNearestTest()<cr>
-map <leader>a :call RunTests('')<cr>
-map <leader>c :w\|:!script/features<cr>
-map <leader>w :w\|:!script/features --profile wip<cr>
-
-function! RunTestFile(...)
-    if a:0
-        let command_suffix = a:1
-    else
-        let command_suffix = ""
-    endif
-
-    " Run the tests for the previously-marked file.
-    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
-    if in_test_file
-        call SetTestFile()
-    elseif !exists("t:grb_test_file")
-        return
-    end
-    call RunTests(t:grb_test_file . command_suffix)
-endfunction
-
-function! RunNearestTest()
-    let spec_line_number = line('.')
-    call RunTestFile(":" . spec_line_number . " -b")
-endfunction
-
-function! SetTestFile()
-    " Set the spec file that tests will be run for.
-    let t:grb_test_file=@%
-endfunction
-
-function! RunTests(filename)
-    " Write the file and run tests for the given filename
-    :w
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    if match(a:filename, '\.feature$') != -1
-        exec ":!script/features " . a:filename
-    else
-        if filereadable("script/test")
-            exec ":!script/test " . a:filename
-        elseif filereadable("Gemfile")
-            exec ":!bundle exec rspec --color " . a:filename
-        else
-            exec ":!rspec --color " . a:filename
-        end
-    end
-endfunction
+map <Leader>f :CtrlP<cr>
+map <leader>/ :TComment<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SNIPPETS 
+" RUBY/RAILS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:snippetsEmu_key = "<S-Tab>"
-let g:snippets_dir = "~/.vim/bundle/snipmate/snippets"
+imap <C-L> <Space>=><Space>
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RAILS COMMANDS 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-command! Rroutes :e config/routes.rb
-command! Rschema :e db/schema.rb
-" Edit the README_FOR_APP (makes :R commands work)
-map <Leader>R :e doc/README_FOR_APP<CR>
-map <Leader>m :Rmodel 
-map <Leader>c :Rcontroller 
-map <Leader>v :Rview 
-map <Leader>u :Runittest 
-map <Leader>rf :Rfunctionaltest 
-map <Leader>l :Rlayout 
-map <Leader>tm :RTmodel 
-map <Leader>tc :RTcontroller 
-map <Leader>tv :RTview 
-map <Leader>tu :RTunittest 
-map <Leader>tf :RTfunctionaltest 
-map <Leader>sm :RSmodel 
-map <Leader>sc :RScontroller 
-map <Leader>sv :RSview 
-map <Leader>su :RSunittest 
-map <Leader>sf :RSfunctionaltest 
-
+""""""""""""""""""""""""""""""""""""""""""""""""
+" Leader bindings
+""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>e :edit %%
+nmap <leader>, <C-^>
+" Hide search highlighting
+map <Leader>h :set invhls <CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FILE NAVIGATION
