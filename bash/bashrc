@@ -103,3 +103,4 @@ fi
 ps1_set --prompt ∴
 
 export PATH=$PATH:/usr/local/heroku/bin:/usr/local/Cellar/mongodb/3.0.2/bin
+source dnvm.sh

@@ -1,4 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/Users/dermot/dev/nujob-marketing'
-let g:netrw_dirhist_2='/Users/dermot/dev/nujob-marketing/app/assets/stylesheets'
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/Users/dermot/dev/yo/lib'
+let g:netrw_dirhist_2='/Users/dermot/dev/yo/lib/completion'
+let g:netrw_dirhist_3='/Users/dermot/dev/yo/lib'
+let g:netrw_dirhist_4='/Users/dermot/dev/yo/lib/routes'
+let g:netrw_dirhist_5='/Users/dermot/dev/yo/lib'
+let g:netrw_dirhist_6='/Users/dermot/dev/yo/lib/utils'
+let g:netrw_dirhist_7='/Users/dermot/dev/yo/lib'

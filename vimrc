@@ -182,13 +182,14 @@ map <leader>gf :CommandTFlush<cr>\|:CommandT %%<cr>
 " Esc not working properly out of the box
 let g:CommandTCancelMap=['<ESC>','<C-c>']
 
-map <Leader>f :CtrlP<cr>
-map <leader>/ :TComment<cr>
+" map <Leader>f :CtrlP<cr>
+map <C>/ :TComment<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RUBY/RAILS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 imap <C-L> <Space>=><Space>
+imap <C-Q> #{
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""

@@ -67,10 +67,6 @@ function rgc() {
 }
 
 
-# opening applications and directorys 
-alias open='gnome-open'
-alias dbox='gnome-open ~/Dropbox/'
-
 # misc
 alias rl='. ~/.bash_profile'
 alias ks='killall -9 skype'
