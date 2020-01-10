@@ -25,6 +25,7 @@ alias ns="docker run -ti --rm -v $(pwd):/home/developer/workspace -w \"/home/dev
 alias dqb="docker run -ti --rm --network=reminder_default -e TOKEN=xoxb-150026987874-AvRwJ71fItgbWQsOvEwbc2AT  -v $(pwd):/home/developer/workspace -w \"/home/developer/workspace\" digitallyseamless/nodejs-bower-grunt bash"
 alias dqbl="docker run -ti --rm --network=reminder_default -e TOKEN=xoxb-165950843698-bKeg3FLHuSlWgVLFI6CK0XZU  -v $(pwd):/home/developer/workspace -w \"/home/developer/workspace\" digitallyseamless/nodejs-bower-grunt bash"
 alias ninit="docker run -ti --rm -v $(pwd):/code -w \"/code\" node npm init"
+alias rex="cd /Users/dermot/dev/javascript/react/examples"
 
 #ssh logins
 alias si="ssh -p 47926 invokoco@invoko.co.uk"
