@@ -15,56 +15,30 @@ else
   alias l='ls -lAh'
 fi
 
-alias sr="screen -r"
 alias df='cd ~/.dotfiles/'
+
+#javascript
+alias nb="docker run -ti --rm -p 8099:3000 -v $(pwd):/code -w \"/code\" node bash"
+alias mt="docker run -ti --rm -v $(pwd):/code -w \"/code\" node npm test"
+alias ni="docker run -ti --rm -v $(pwd):/code -w \"/code\" node npm install"
+alias ns="docker run -ti --rm -v $(pwd):/home/developer/workspace -w \"/home/developer/workspace\" node npm start"
+alias dqb="docker run -ti --rm --network=reminder_default -e TOKEN=xoxb-150026987874-AvRwJ71fItgbWQsOvEwbc2AT  -v $(pwd):/home/developer/workspace -w \"/home/developer/workspace\" digitallyseamless/nodejs-bower-grunt bash"
+alias dqbl="docker run -ti --rm --network=reminder_default -e TOKEN=xoxb-165950843698-bKeg3FLHuSlWgVLFI6CK0XZU  -v $(pwd):/home/developer/workspace -w \"/home/developer/workspace\" digitallyseamless/nodejs-bower-grunt bash"
+alias ninit="docker run -ti --rm -v $(pwd):/code -w \"/code\" node npm init"
 
 #ssh logins
 alias si="ssh -p 47926 invokoco@invoko.co.uk"
 alias spla="ssh publandl@ramjet.3v0.net"
 
-alias ea='vim ~/.dotfiles/bash/aliases'
-# changing directory to project
-function p { cd ~/dev/$1; }
-function biz { ruby ~/1025.rb "$1" "$2" "$3"; }
+alias ea='docker run -ti --rm -v /Users/dermot:/home/developer/workspace dkil1972/vim-bundle .dotfiles/bash/aliases'
+alias edit='docker run -ti --rm -v $(pwd):/home/developer/workspace dkil1972/vim-bundle'
 
 # Git
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 
-#heroku
-alias hld="heroku logs --app saidyes-demo"
-alias hls="heroku logs --app saidyes-staging"
-alias hlp="heroku logs --app saidyes"
-alias hcd="heroku console --app saidyes-demo"
-alias hcs="heroku console --app saidyes-staging"
-alias hcp="heroku console --app saidyes"
-
 #mongo
 alias m3="/usr/local/Cellar/mongodb/3.0.2/bin/mongo"
 alias mi3="/usr/local/Cellar/mongodb/3.0.2/bin/mongoimport"
-
-#rspec
-function rsn() {
-  rspec --drb -cf nested "$1"
-}
-
-alias rs="rspec"
-
-alias ctl="cat /dev/null > log/test.log"
-alias cdl="cat /dev/null > log/development.log"
-
-# alternative to "rails" command to use templates
-#function railsapp {
-#  template=$1
-#  appname=$2
-#  shift 2
-#  rails $appname -m http://github.com/ryanb/rails-templates/raw/master/$template.rb $@
-#}
-
-#rbenv
-alias rv='rbenv versions'
-function rgc() {
-  rbenv gemset create "$1" "$2"
-}
 
 
 # misc
