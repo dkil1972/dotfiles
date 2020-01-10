@@ -102,5 +102,5 @@ fi
 [[ -s "$HOME/.dotfiles/bash/functions/ps1_functions" ]] && source "$HOME/.dotfiles/bash/functions/ps1_functions"
 ps1_set --prompt ∴
 
-export PATH=$PATH:/usr/local/heroku/bin:/usr/local/Cellar/mongodb/3.0.2/bin
-source dnvm.sh
+#open vs code in terminal
+code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
