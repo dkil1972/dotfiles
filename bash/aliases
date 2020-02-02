@@ -15,7 +15,6 @@ else
   alias l='ls -lAh'
 fi
 
-alias df='cd ~/.dotfiles/'
 
 #javascript
 alias nb="docker run -ti --rm -p 8099:3000 -v $(pwd):/code -w \"/code\" node bash"
@@ -25,12 +24,8 @@ alias ns="docker run -ti --rm -v $(pwd):/home/developer/workspace -w \"/home/dev
 alias dqb="docker run -ti --rm --network=reminder_default -e TOKEN=xoxb-150026987874-AvRwJ71fItgbWQsOvEwbc2AT  -v $(pwd):/home/developer/workspace -w \"/home/developer/workspace\" digitallyseamless/nodejs-bower-grunt bash"
 alias dqbl="docker run -ti --rm --network=reminder_default -e TOKEN=xoxb-165950843698-bKeg3FLHuSlWgVLFI6CK0XZU  -v $(pwd):/home/developer/workspace -w \"/home/developer/workspace\" digitallyseamless/nodejs-bower-grunt bash"
 alias ninit="docker run -ti --rm -v $(pwd):/code -w \"/code\" node npm init"
-alias rex="cd /Users/dermot/dev/javascript/react/examples"
-alias react="docker run -it -v \"$PWD\":/usr/src -w /usr/src -p \"3000:3000\" teracy/create-react-app /bin/bash"
+alias react="docker run -it --rm -v \"$PWD\":/usr/src -w /usr/src -p \"3000:3000\" teracy/create-react-app /bin/bash"
 
-#ssh logins
-alias si="ssh -p 47926 invokoco@invoko.co.uk"
-alias spla="ssh publandl@ramjet.3v0.net"
 
 alias ea='docker run -ti --rm -v /Users/dermot:/home/developer/workspace dkil1972/vim-bundle .dotfiles/bash/aliases'
 alias edit='docker run -ti --rm -v $(pwd):/home/developer/workspace dkil1972/vim-bundle'
@@ -42,6 +37,10 @@ alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 alias m3="/usr/local/Cellar/mongodb/3.0.2/bin/mongo"
 alias mi3="/usr/local/Cellar/mongodb/3.0.2/bin/mongoimport"
 
+#directories
+alias df='cd ~/.dotfiles/'
+alias rex="cd /Users/dermot/dev/javascript/react/examples"
+alias rmr="cd ~/dev/javascript/react/examples/mars-rover"
 
 # misc
 alias rl='. ~/.bash_profile'
