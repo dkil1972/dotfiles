@@ -21,10 +21,14 @@ alias nb="docker run -ti --rm -p 8099:3000 -v $(pwd):/code -w \"/code\" node bas
 alias mt="docker run -ti --rm -v $(pwd):/code -w \"/code\" node npm test"
 alias ni="docker run -ti --rm -v $(pwd):/code -w \"/code\" node npm install"
 alias ns="docker run -ti --rm -v $(pwd):/home/developer/workspace -w \"/home/developer/workspace\" node npm start"
+alias npmd="docker run -ti --rm -v $(pwd):/home/developer/workspace -w \"/home/developer/workspace\" node"
 alias dqb="docker run -ti --rm --network=reminder_default -e TOKEN=xoxb-150026987874-AvRwJ71fItgbWQsOvEwbc2AT  -v $(pwd):/home/developer/workspace -w \"/home/developer/workspace\" digitallyseamless/nodejs-bower-grunt bash"
 alias dqbl="docker run -ti --rm --network=reminder_default -e TOKEN=xoxb-165950843698-bKeg3FLHuSlWgVLFI6CK0XZU  -v $(pwd):/home/developer/workspace -w \"/home/developer/workspace\" digitallyseamless/nodejs-bower-grunt bash"
 alias ninit="docker run -ti --rm -v $(pwd):/code -w \"/code\" node npm init"
 alias react="docker run -it --rm -v \"$PWD\":/usr/src -w /usr/src -p \"3000:3000\" teracy/create-react-app /bin/bash"
+alias njs="docker run -it --rm -v \"$PWD\":/usr/src -w /usr/src -p \"3000:3000\" juhlig/nextjs_build_pipe /bin/bash"
+alias dgatsby="docker run -ti --rm -p 8000:8000 -p 9000:9000 -v $(pwd):/app -w \"/app\" dkil1972/gatsby /bin/ash"
+alias gdev="docker run -ti --rm -p 8000:8000 -p 9000:9000 -v $(pwd):/app -w \"/app\" dkil1972/gatsby gatsby develop -H 0.0.0.0"
 
 
 alias ea='docker run -ti --rm -v /Users/dermot:/home/developer/workspace dkil1972/vim-bundle .dotfiles/bash/aliases'
@@ -32,16 +36,34 @@ alias edit='docker run -ti --rm -v $(pwd):/home/developer/workspace dkil1972/vim
 
 # Git
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
-
-#mongo
-alias m3="/usr/local/Cellar/mongodb/3.0.2/bin/mongo"
-alias mi3="/usr/local/Cellar/mongodb/3.0.2/bin/mongoimport"
+alias gcam="git commit -am"
+alias gpo="git push origin"
 
 #directories
 alias df='cd ~/.dotfiles/'
 alias rex="cd /Users/dermot/dev/javascript/react/examples"
 alias rmr="cd ~/dev/javascript/react/examples/mars-rover"
+alias dk='pushd ~/dev/blog/dermotkilroy.com/'
 
 # misc
 alias rl='. ~/.bash_profile'
-alias ks='killall -9 skype'
+
+#drive files
+alias jd='open https://docs.google.com/document/d/1UwY99OXWZzqB5FvOz2fQ96JpcKgxNyZWPXKhLo_c1wk/edit#'
+alias cv='open https://docs.google.com/document/d/1diDsq2T5HL2wD9wivCcInLvSCzkpc2bzzwz--fLCDLQ/edit#'
+alias md='open https://drive.google.com/drive/my-drive'
+alias waigtwml='open https://docs.google.com/presentation/d/1dM-XIIarWt3PsHxFi_B92-pYc1Xjh80AJZR93Ogt02g/edit'
+
+#communication
+alias lim='open https://www.linkedin.com/messaging'
+
+#productivity
+alias gcal='open https://calendar.google.com/calendar/r'
+alias gmail='open https://mail.google.com/mail/u/0/#inbox'
+alias tjs='open https://trello.com/b/6utabj6z/job-search'
+alias todo='open https://www.evernote.com/client/web?_sourcePage\=Zqg07pASywbiMUD9T65RG_YvRLZ-1eYO3fqfqRu0fynRL_1nukNa4gH1t86pc1SP\&__fp\=dKNPx8qPDdU3yWPvuidLz-TPR6I9Jhx8\&hpts\=1599987624354\&showSwitchService\=true&hptsh\=Sywb3Fn9hoZ81nC7SlU2gAVa3aY%3D#?an\=true\&n\=ee137165-a43c-4b00-85f3-b645b1e75be7&'
+alias bte='pushd ~/dev/aws-playground/terraform/beginner-to-expert'
+
+#Terraform
+alias tfdl='docker run -it --rm -e TF_LOG=TRACE -v ~/.aws/credentials:/root/.aws/credentials -v $(pwd):/app -w "/app" dkil1972/terraform-node:latest'
+alias tfd='docker run -it --rm  -v ~/.aws/credentials:/root/.aws/credentials -v $(pwd):/app -w "/app" dkil1972/terraform-node:latest'

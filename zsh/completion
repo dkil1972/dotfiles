@@ -1,4 +1,5 @@
 autoload -U compinit
+
 compinit
 
 # matches case insensitive for lowercase
