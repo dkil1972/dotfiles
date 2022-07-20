@@ -1,6 +1,3 @@
-[submodule "vim/bundle/vim-slim"]
-	path = vim/bundle/vim-slim
-	url = https://github.com/slim-template/vim-slim.git
 [submodule "vim/bundle/snipmate"]
 	path = vim/bundle/snipmate
 	url = https://github.com/msanders/snipmate.vim.git
@@ -13,15 +10,6 @@
 [submodule "vim/bundle/hammer"]
 	path = vim/bundle/hammer
 	url = https://github.com/robgleeson/hammer.vim.git
-[submodule "vim/bundle/syntastic"]
-	path = vim/bundle/syntastic
-    url = https://github.com/scrooloose/syntastic.git
-[submodule "vim/bundle/ctrlp"]
-	path = vim/bundle/ctrlp.vim
-    url = https://github.com/kien/ctrlp.vim.git
-[submodule "vim/bundle/omnisharp"]
-	path = vim/bundle/omnisharp-vim
-    url = https://github.com/OmniSharp/omnisharp-vim.git
 [submodule "vim/bundle/omnisharp-roslyn"]
 	path = vim/bundle/omnisharp-roslyn
     url = https://github.com/OmniSharp/omnisharp-roslyn.git
@@ -40,9 +28,6 @@
 [submodule "vim/bundle/vim-json"]
 	path = vim/bundle/vim-json
     url = https://github.com/elzr/vim-json.git
-[submodule "vim/bundle/bufexplorer"]
-	path = vim/bundle/bufexplorer
-  url = https://github.com/jlanzarotta/bufexplorer.git
 [submodule "vim/bundle/vim-markdown"]
 	path = vim/bundle/vim-markdown
     url = https://github.com/plasticboy/vim-markdown.git
@@ -52,9 +37,6 @@
 [submodule "vim/bundle/vim-surround"]
 	path = vim/bundle/vim-surround
     url = https://github.com/tpope/vim-surround.git
-[submodule "vim/bundle/vim-dispatch"]
-	path = vim/bundle/vim-dispatch
-    url = https://github.com/tpope/vim-dispatch.git
 [submodule "vim/bundle/vader"]
 	path = vim/bundle/vader
     url = https://github.com/junegunn/vader.vim.git
@@ -70,9 +52,6 @@
 [submodule "vim/bundle/Dockerfile"]
 	path = vim/bundle/Dockerfile
   url = https://github.com/ekalinin/Dockerfile.vim.git
-[submodule "vim/bundle/tcomment_vim"]
-	path = vim/bundle/tcomment_vim
-  url = https://github.com/tomtom/tcomment_vim.git
 [submodule "vim/bundle/vim-elixir"]
 	path = vim/bundle/vim-elixir
   url = https://github.com/elixir-lang/vim-elixir.git
@@ -82,9 +61,6 @@
 [submodule "vim/bundle/vim-LanguageTool"]
 	path = vim/bundle/vim-LanguageTool
   url = https://github.com/dpelle/vim-LanguageTool.git
-[submodule "vim/bundle/vim-rails"]
-	path = vim/bundle/vim-rails
-  url = https://github.com/tpope/vim-rails.git
 [submodule "vim/bundle/terraform"]
 	path = vim/bundle/terraform
   url = https://github.com/hashivim/vim-terraform.git
