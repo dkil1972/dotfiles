@@ -2,11 +2,6 @@
 " BASIC EDITING CONFIGURATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
-
-" Now call pathogen
-silent! call pathogen#infect()
-silent! call pathogen#helptags()
-
 filetype plugin indent on         " Turn on file type detection.
 
 set backspace=indent,eol,start
@@ -98,10 +93,13 @@ if &diff
   syntax off
 endif
 
-" Color scheme
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => color and theme
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set background=dark
 colorscheme distinguished
-highlight NonText guibg=#060606
-highlight Folded  guibg=#0A0A0A guifg=#9090D0
+set relativenumber
+set number
 
 
 "syntax highlight shell scripts as per POSIX,
@@ -131,9 +129,6 @@ vmap <S-Tab> <gv
 " Normal mode: %%
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
-" For Haml
-au! BufRead,BufNewFile *.haml         setfiletype haml
-
 " No Help, please
 nmap <F1> <Esc>
 " Maps autocomplete to tab
@@ -141,15 +136,38 @@ imap <Tab> <C-N>
 
 let g:fuf_splitPathMatching=1
 
-vmap <C-c> :<Esc>`>a<CR><Esc>mx`<i<CR><Esc>my'xk$v'y!xclip -selection c<CR>u
-map <Insert> :set paste<CR>i<CR><CR><Esc>k:.!xclip -o<CR>JxkJx:set nopaste<CR>
+""""""""""""""""""""""""""""""
+" => bufExplorer plugin
+""""""""""""""""""""""""""""""
+let g:bufExplorerDefaultHelp=0
+let g:bufExplorerShowRelativePath=1
+let g:bufExplorerFindActive=1
+let g:bufExplorerSortBy='name'
+map <leader>o :BufExplorer<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" => buffer switch
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <Leader>. :bn<CR>
+nnoremap <Leader>, :bp<CR>
+
+""""""""""""""""""""""""""""""
+" => Settings for pencil a text editing plugin
+""""""""""""""""""""""""""""""
+let g:pencil#wrapModeDefault = 'soft' 
+augroup pencil
+    autocmd!
+    autocmd FileType markdown,mkd call pencil#init()
+    autocmd FileType text         call pencil#init({'wrap': 'soft'})
+    let g:pencil#textwidth = 100
+augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PROMOTE VARIABLE TO RSPEC LET
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! PromoteToLet()
-  :normal! dd
   " :exec '?^\s*it\>'
+  :normal! dd
   :normal! P
   :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
   :normal ==
@@ -182,8 +200,19 @@ map <leader>gf :CommandTFlush<cr>\|:CommandT %%<cr>
 " Esc not working properly out of the box
 let g:CommandTCancelMap=['<ESC>','<C-c>']
 
-" map <Leader>f :CtrlP<cr>
 map <C>/ :TComment<cr>
+
+""""""""""""""""""""""""""""""
+" => CTRL-P
+""""""""""""""""""""""""""""""
+let g:ctrlp_working_path_mode = 0
+
+let g:ctrlp_map = '<c-f>'
+map <leader>j :CtrlP<cr>
+map <c-b> :CtrlPBuffer<cr>
+
+let g:ctrlp_max_height = 20
+let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RUBY/RAILS
@@ -191,12 +220,17 @@ map <C>/ :TComment<cr>
 imap <C-L> <Space>=><Space>
 imap <C-Q> #{
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" => surround.vim config
+"" Annotate strings with gettext http://amix.dk/blog/post/19678
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+vmap Si S(i_<esc>f)
+au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " Leader bindings
 """"""""""""""""""""""""""""""""""""""""""""""""
 map <leader>e :edit %%
-nmap <leader>, <C-^>
 " Hide search highlighting
 map <Leader>h :set invhls <CR>
 
@@ -207,7 +241,20 @@ map <C-j> <C-W>j
 map <C-h> <C-W>h
 map <C-k> <C-W>k
 map <C-l> <C-W>l
-nmap <F3> <leader>be
 " Move lines up and down
-map <C-U> :m +1 <CR>
 map <C-m> :m -2 <CR>
+map <C-U> :m +1 <CR>
+" Set up vertical vs block cursor for insert/normal mode
+if &term =~ "screen."
+    let &t_ti.="\eP\e[1 q\e\\"
+    let &t_SI.="\eP\e[5 q\e\\"
+    let &t_EI.="\eP\e[1 q\e\\"
+    let &t_te.="\eP\e[0 q\e\\"
+else
+    let &t_ti.="\<Esc>[1 q"
+    let &t_SI.="\<Esc>[5 q"
+    let &t_EI.="\<Esc>[1 q"
+    let &t_te.="\<Esc>[0 q"
+endif
+
+set spell spelllang=en_gb
