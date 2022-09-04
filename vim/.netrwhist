@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =5
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/Users/dermot/dev/ruby/another_blog/app'
+let g:netrw_dirhist_7='/Users/dermot/dev/ruby/another_blog/app/controllers'
+let g:netrw_dirhist_6='/Users/dermot/dev/ruby/another_blog/app/controllers/concerns'
 let g:netrw_dirhist_5='/Users/dermot/freewriting/journal'
 let g:netrw_dirhist_4='/Users/dermot/dev/docker/alpine-vim'
 let g:netrw_dirhist_3='/Users/dermot/.dotfiles/tmux'
