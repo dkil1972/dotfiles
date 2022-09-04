@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =4
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/Users/dermot/freewriting/journal'
 let g:netrw_dirhist_4='/Users/dermot/dev/docker/alpine-vim'
 let g:netrw_dirhist_3='/Users/dermot/.dotfiles/tmux'
 let g:netrw_dirhist_2='/Users/dermot/.dotfiles/bash'

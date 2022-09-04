@@ -23,4 +23,5 @@ git submodule add https://github.com/elixir-lang/vim-elixir.git pack/plugins/sta
 git submodule add https://github.com/danielmiessler/VimBlog.git pack/plugins/start/VimBlog && \
 git submodule add https://github.com/dpelle/vim-LanguageTool.git pack/plugins/start/vim-LanguageTool && \
 git submodule add https://github.com/tpope/vim-rails.git pack/plugins/start/vim-rails && \
+git submodule add https://github.com/mileszs/ack.vim.git && \
 git submodule add https://github.com/hashivim/vim-terraform.git pack/plugins/start/vim-terraform 
