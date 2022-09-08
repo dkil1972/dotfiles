@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =5
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/Users/dermotkilroy/Library/Logs/Homebrew/ruby'
+let g:netrw_dirhist_7='/Users/dermotkilroy'
+let g:netrw_dirhist_6='/Users/dermotkilroy/usrlocal_homebrew_install_backup'
 let g:netrw_dirhist_5='/Users/dermotkilroy/Dev/personal/dotfiles/tmux'
 let g:netrw_dirhist_4='/Users/dermotkilroy/Dev/personal/dotfiles'
 let g:netrw_dirhist_3='/Users/dermotkilroy/Dev/personal/dotfiles/tmux'
@@ -7,6 +10,3 @@ let g:netrw_dirhist_2='/Users/dermotkilroy/Dev/personal/dotfiles'
 let g:netrw_dirhist_1='/Users/dermotkilroy/Dev/personal/dotfiles/zsh'
 let g:netrw_dirhist_0='/Users/dermotkilroy/Dev/personal/dotfiles'
 let g:netrw_dirhist_9='/Users/dermotkilroy/Dev/personal/dotfiles/zsh'
-let g:netrw_dirhist_8='/Users/dermot/dev/ruby/another_blog/app'
-let g:netrw_dirhist_7='/Users/dermot/dev/ruby/another_blog/app/controllers'
-let g:netrw_dirhist_6='/Users/dermot/dev/ruby/another_blog/app/controllers/concerns'

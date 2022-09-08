@@ -67,9 +67,12 @@
 [submodule "vim/pack/plugins/start/vim-LanguageTool"]
 	path = vim/pack/plugins/start/vim-LanguageTool
 	url = https://github.com/dpelle/vim-LanguageTool.git
-[submodule "vim/pack/plugins/start/vim-rails"]
-	path = vim/pack/plugins/start/vim-rails
-	url = https://github.com/tpope/vim-rails.git
 [submodule "vim/pack/plugins/start/vim-terraform"]
 	path = vim/pack/plugins/start/vim-terraform
 	url = https://github.com/hashivim/vim-terraform.git
+[submodule "pack/plugins/start/vim-rails"]
+	path = pack/plugins/start/vim-rails
+	url = https://github.com/tpope/vim-rails.git
+[submodule "vim/pack/plugins/start/vim-ragtag"]
+	path = vim/pack/plugins/start/vim-ragtag
+	url = https://github.com/tpope/vim-ragtag.git
