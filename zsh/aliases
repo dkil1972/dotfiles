@@ -18,19 +18,31 @@ alias gb='git branch'
 alias gs='git status'
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 
-# rails
-alias sc='script/console'
-alias ss='script/server'
-alias sg='script/generate'
-alias a='autotest -rails'
-alias tlog='tail -f log/development.log'
-alias scaffold='script/generate nifty_scaffold'
-alias migrate='rake db:migrate db:test:clone'
-alias rst='touch tmp/restart.txt'
-
 # commands starting with % for pasting from web
 alias %=' '
 alias rl='. ~/.zshrc'
+
+alias ea='vim ~/.zsh/aliases'
+
+# projects
+alias df='pushd ~/Dev/personal/dotfiles/'
+alias lr='pushd ~/Dev/ruby/playground/basics/rails'
+alias az='pushd ~/projects'
+
+#Websites 
+alias cs='open https://azafinance.atlassian.net/jira/software/c/projects/BTA/boards/126 && clear'
+alias cbd='open https://azafinance.atlassian.net/jira/software/c/projects/BTA/boards/126/reports/burndown-chart\?estimate=field_customfield_10016 && clear'
+alias bap='open https://eu-west-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/Bitpesa-Admin-Pipeline/view\?region=eu-west-1 && clear'
+alias pafps='open https://account.postmarkapp.com/servers/5263111/streams/outbound/events && clear'
+alias pbps='open https://account.postmarkapp.com/servers/1883531/streams/outbound/events && clear'
+alias psl='open https://account.postmarkapp.com/servers && clear'
+
+alias staging='source ~/kube_config/setup_staging.sh'
+
+#tmux
+alias tsb='tmux show-buffer'
+alias tlb='tmux list-buffer'
+alias tpb='tmux pasteb'
 
 #docker tools
 alias edit='docker run -ti --rm -v $(pwd):/home/developer/workspace dkil1972/vim-bundle'
