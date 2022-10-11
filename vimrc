@@ -241,9 +241,6 @@ map <C-j> <C-W>j
 map <C-h> <C-W>h
 map <C-k> <C-W>k
 map <C-l> <C-W>l
-" Move lines up and down
-map <C-m> :m -2 <CR>
-map <C-U> :m +1 <CR>
 " Set up vertical vs block cursor for insert/normal mode
 if &term =~ "screen."
     let &t_ti.="\eP\e[1 q\e\\"

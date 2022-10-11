@@ -76,3 +76,6 @@
 [submodule "vim/pack/plugins/start/vim-ragtag"]
 	path = vim/pack/plugins/start/vim-ragtag
 	url = https://github.com/tpope/vim-ragtag.git
+[submodule "pack/plugins/start/ack.vim"]
+	path = pack/plugins/start/ack.vim
+	url = https://github.com/mileszs/ack.vim.git
