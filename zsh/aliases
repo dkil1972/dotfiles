@@ -43,6 +43,9 @@ alias staging='source ~/kube_config/setup_staging.sh'
 alias tsb='tmux show-buffer'
 alias tlb='tmux list-buffer'
 alias tpb='tmux pasteb'
+alias tls='tmux ls'
+alias tn='tmux_new() { tmux new -s $1 };tmux_new'
+alias tat='tmux_attach() { tmux attach -t $1 };tmux_attach'
 
 #docker tools
 alias edit='docker run -ti --rm -v $(pwd):/home/developer/workspace dkil1972/vim-bundle'
