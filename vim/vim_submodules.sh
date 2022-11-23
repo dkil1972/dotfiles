@@ -21,4 +21,5 @@ git submodule add https://github.com/tomtom/tcomment_vim.git pack/plugins/start/
 git submodule add https://github.com/dpelle/vim-LanguageTool.git pack/plugins/start/vim-LanguageTool && \
 git submodule add https://github.com/mileszs/ack.vim.git pack/plugins/start/ack.vim && \
 git submodule add https://github.com/tpope/vim-ragtag.git pack/plugins/start/vim-ragtag && \
+git submodule add https://github.com/slim-template/vim-slim.git pack/plugins/start/vim-slim && \
 git submodule add https://github.com/hashivim/vim-terraform.git pack/plugins/start/vim-terraform 

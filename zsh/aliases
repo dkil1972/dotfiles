@@ -31,8 +31,15 @@ alias az='pushd ~/projects'
 
 #Websites 
 alias cs='open https://azafinance.atlassian.net/jira/software/c/projects/BTA/boards/126 && clear'
+alias cbl='open https://azafinance.atlassian.net/jira/software/c/projects/BTA/boards/126/backlog\?view=detail\&selectedIssue=BTA-9426\&issueLimit=100 && clear'
 alias cbd='open https://azafinance.atlassian.net/jira/software/c/projects/BTA/boards/126/reports/burndown-chart\?estimate=field_customfield_10016 && clear'
+alias tic='view_ticket() { open https://azafinance.atlassian.net/browse/BTA-$1 }; view_ticket'
+
+#Code Pipelines
 alias bap='open https://eu-west-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/Bitpesa-Admin-Pipeline/view\?region=eu-west-1 && clear'
+alias ersp='open  https://eu-west-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/Exchange-Rates-Service-Pipeline/view\?region=eu-west-1 && clear'
+
+#Postmark emails
 alias pafps='open https://account.postmarkapp.com/servers/5263111/streams/outbound/events && clear'
 alias pbps='open https://account.postmarkapp.com/servers/1883531/streams/outbound/events && clear'
 alias psl='open https://account.postmarkapp.com/servers && clear'
@@ -46,6 +53,11 @@ alias tpb='tmux pasteb'
 alias tls='tmux ls'
 alias tn='tmux_new() { tmux new -s $1 };tmux_new'
 alias tat='tmux_attach() { tmux attach -t $1 };tmux_attach'
+
+#writing
+alias fw='cd ~/freewriting/'
+alias fwti='cd ~/freewriting/team-improvements'
+
 
 #docker tools
 alias edit='docker run -ti --rm -v $(pwd):/home/developer/workspace dkil1972/vim-bundle'

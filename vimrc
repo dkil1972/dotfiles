@@ -117,7 +117,6 @@ set listchars=tab:>-,trail:.,extends:>
 """"""""""""""""""""""""""""""""""""""""""""""""
 " Key bindings
 """"""""""""""""""""""""""""""""""""""""""""""""
-map <CR> o<Esc>
 map <C-d> VYp
 map <S-Enter> O<Esc>j
 "allow deleting selection without updating the clipboard (yank buffer)
@@ -233,6 +232,7 @@ au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 map <leader>e :edit %%
 " Hide search highlighting
 map <Leader>h :set invhls <CR>
+map <Leader>s :set nospell <CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FILE NAVIGATION
