@@ -29,6 +29,9 @@ alias df='pushd ~/Dev/personal/dotfiles/'
 alias lr='pushd ~/Dev/ruby/playground/basics/rails'
 alias az='pushd ~/projects'
 
+#Google Drive
+alias rcrd='open https://drive.google.com/drive/folders/1rnvMa9CauKkZZLuuJP-yu8OBBguUsC1y'
+
 #Websites 
 alias cs='open https://azafinance.atlassian.net/jira/software/c/projects/BTA/boards/126 && clear'
 alias cbl='open https://azafinance.atlassian.net/jira/software/c/projects/BTA/boards/126/backlog\?view=detail\&selectedIssue=BTA-9426\&issueLimit=100 && clear'
