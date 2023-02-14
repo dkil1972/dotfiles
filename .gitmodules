@@ -1,9 +1,9 @@
-[submodule "vim/pack/plugins/start/ctrlp.vim"]
-	path = vim/pack/plugins/start/ctrlp.vim
-	url = https://github.com/kien/ctrlp.vim.git
 [submodule "vim/pack/plugins/start/syntastic"]
 	path = vim/pack/plugins/start/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule "vim/pack/plugins/start/ctrlp.vim"]
+	path = vim/pack/plugins/start/ctrlp.vim
+	url = https://github.com/kien/ctrlp.vim.git
 [submodule "vim/pack/plugins/start/omnisharp-vim"]
 	path = vim/pack/plugins/start/omnisharp-vim
 	url = https://github.com/OmniSharp/omnisharp-vim.git
@@ -64,6 +64,9 @@
 [submodule "vim/pack/plugins/start/vim-ragtag"]
 	path = vim/pack/plugins/start/vim-ragtag
 	url = https://github.com/tpope/vim-ragtag.git
+[submodule "vim/pack/plugins/start/vim-slim"]
+	path = vim/pack/plugins/start/vim-slim
+	url = https://github.com/slim-template/vim-slim.git
 [submodule "vim/pack/plugins/start/vim-terraform"]
 	path = vim/pack/plugins/start/vim-terraform
 	url = https://github.com/hashivim/vim-terraform.git
