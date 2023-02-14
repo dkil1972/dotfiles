@@ -3,8 +3,6 @@ git submodule add https://github.com/scrooloose/syntastic.git pack/plugins/start
 git submodule add https://github.com/kien/ctrlp.vim.git pack/plugins/start/ctrlp.vim && \
 git submodule add https://github.com/OmniSharp/omnisharp-vim.git pack/plugins/start/omnisharp-vim && \
 git submodule add https://github.com/OmniSharp/omnisharp-roslyn.git pack/plugins/start/omnisharp-roslyn && \
-git submodule add https://github.com/MaxMEllon/vim-jsx-pretty.git pack/plugins/start/vim-jsx-pretty && \
-git submodule add https://github.com/pangloss/vim-javascript.git pack/plugins/start/vim-javascript && \
 git submodule add https://github.com/othree/html5.vim.git pack/plugins/start/html5.vim && \
 git submodule add https://github.com/elzr/vim-json.git pack/plugins/start/vim-json && \
 git submodule add https://github.com/jlanzarotta/bufexplorer.git pack/plugins/start/bufexplorer && \
