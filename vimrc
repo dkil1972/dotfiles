@@ -29,6 +29,7 @@ set smartcase
 " Numbers
 set number
 set numberwidth=5
+set nospell
 
 let mapleader = ","
 
@@ -186,7 +187,7 @@ function! RenameFile()
         redraw!
     endif
 endfunction
-map <leader>n :call RenameFile()<cr>
+map <leader>m :call RenameFile()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COMMAND T
@@ -232,7 +233,8 @@ au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 map <leader>e :edit %%
 " Hide search highlighting
 map <Leader>h :set invhls <CR>
-map <Leader>s :set nospell <CR>
+map <Leader>s :set spell spelllang=en_gb \| set spell <CR>
+map <leader>n :set nospell<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FILE NAVIGATION
@@ -254,4 +256,4 @@ else
     let &t_te.="\<Esc>[0 q"
 endif
 
-set spell spelllang=en_gb
+
