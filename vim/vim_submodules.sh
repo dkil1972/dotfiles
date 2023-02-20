@@ -1,5 +1,9 @@
 # NOTE Add submodule command to the top of the list
 # running this script will add any new submodules and fail on existing.
+git submodule add https://github.com/peitalin/vim-jsx-typescript.git pack/plugins/start/vim-jsx-typescript && \
+git submodule add https://github.com/MaxMEllon/vim-jsx-pretty.git pack/plugins/start/vim-jsx-pretty && \
+git submodule add https://github.com/leafgarland/typescript-vim.git pack/plugins/start/typescript-vim && \
+git submodule add https://github.com/pangloss/vim-javascript.git pack/plugins/start/vim-javascript && \
 git submodule add https://github.com/scrooloose/syntastic.git pack/plugins/start/syntastic && \
 git submodule add https://github.com/kien/ctrlp.vim.git pack/plugins/start/ctrlp.vim && \
 git submodule add https://github.com/OmniSharp/omnisharp-vim.git pack/plugins/start/omnisharp-vim && \

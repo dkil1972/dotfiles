@@ -64,3 +64,15 @@
 [submodule "vim/pack/plugins/start/vim-terraform"]
 	path = vim/pack/plugins/start/vim-terraform
 	url = https://github.com/hashivim/vim-terraform.git
+[submodule "vim/pack/plugins/start/vim-jsx-typescript"]
+	path = vim/pack/plugins/start/vim-jsx-typescript
+	url = https://github.com/peitalin/vim-jsx-typescript.git
+[submodule "vim/pack/plugins/start/vim-jsx-pretty"]
+	path = vim/pack/plugins/start/vim-jsx-pretty
+	url = https://github.com/MaxMEllon/vim-jsx-pretty.git
+[submodule "vim/pack/plugins/start/typescript-vim"]
+	path = vim/pack/plugins/start/typescript-vim
+	url = https://github.com/leafgarland/typescript-vim.git
+[submodule "vim/pack/plugins/start/vim-javascript"]
+	path = vim/pack/plugins/start/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
