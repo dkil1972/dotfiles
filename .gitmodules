@@ -76,3 +76,6 @@
 [submodule "vim/pack/plugins/start/vim-javascript"]
 	path = vim/pack/plugins/start/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
+[submodule "vim/pack/plugins/start/coc.vim"]
+	path = vim/pack/plugins/start/coc.vim
+	url = https://github.com/neoclide/coc.nvim.git
