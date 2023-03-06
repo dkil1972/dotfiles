@@ -76,3 +76,9 @@
 [submodule "vim/pack/plugins/start/vim-javascript"]
 	path = vim/pack/plugins/start/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
+[submodule "vim/pack/plugins/start/ultisnips.vim"]
+	path = vim/pack/plugins/start/ultisnips.vim
+	url = https://github.com/SirVer/ultisnips.git
+[submodule "vim/pack/plugins/start/vim-snippets.vim"]
+	path = vim/pack/plugins/start/vim-snippets.vim
+	url = https://github.com/honza/vim-snippets.git
