@@ -11,11 +11,7 @@ fi
 PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
 export PATH
 
-source ~/.profile
-
 export PATH=$PATH:/Users/dermot/bin
-
-source '/Users/dermot/lib/azure-cli/az.completion'
 
 ##
 # Your previous /Users/dermot/.bash_profile file was backed up as /Users/dermot/.bash_profile.macports-saved_2020-10-04_at_18:54:58
