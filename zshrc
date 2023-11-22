@@ -12,7 +12,10 @@ eval $(/opt/homebrew/bin/brew shellenv)
 . ~/.zsh/completion
 
 source ~/.zlogin
-source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
+source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+#enable vi movements in zsh
+bindkey -v
 
 # To customize prompt, run p10k configure or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

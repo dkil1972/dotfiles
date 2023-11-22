@@ -49,8 +49,5 @@ bindkey '^[[3~' delete-char
 bindkey '^[^N' newtab
 bindkey '^?' backward-delete-char 
 
-source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=white,bg=cyan,bold,underline"
 

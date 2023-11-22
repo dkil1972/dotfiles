@@ -88,3 +88,6 @@
 [submodule "vim/pack/plugins/start/vim-snipmate"]
 	path = vim/pack/plugins/start/vim-snipmate
 	url = https://github.com/garbas/vim-snipmate.git
+[submodule "vim/pack/plugins/start/vim-js"]
+	path = vim/pack/plugins/start/vim-js
+	url = https://github.com/yuezk/vim-js.git

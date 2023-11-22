@@ -27,7 +27,12 @@ alias ea='vim ~/.zsh/aliases'
 # projects
 alias df='pushd ~/Dev/personal/dotfiles/'
 alias lr='pushd ~/Dev/ruby/playground/basics/rails'
-alias az='pushd ~/projects'
+alias pr='pushd ~/projects'
+alias re='pushd ~/projects/internal/report-engine'
+alias api='pushd ~/projects/core/api'
+alias admin='pushd ~/projects/core/admin'
+alias as='pushd ~/projects/services/auth-service'
+alias sp='pushd ~/projects/services/square-peg'
 
 #Google Drive
 alias rcrd='open https://drive.google.com/drive/folders/1rnvMa9CauKkZZLuuJP-yu8OBBguUsC1y'
@@ -37,10 +42,19 @@ alias cs='open https://azafinance.atlassian.net/jira/software/c/projects/BTA/boa
 alias cbl='open https://azafinance.atlassian.net/jira/software/c/projects/BTA/boards/126/backlog\?view=detail\&selectedIssue=BTA-9426\&issueLimit=100 && clear'
 alias cbd='open https://azafinance.atlassian.net/jira/software/c/projects/BTA/boards/126/reports/burndown-chart\?estimate=field_customfield_10016 && clear'
 alias tic='view_ticket() { open https://azafinance.atlassian.net/browse/BTA-$1 }; view_ticket'
+alias txn='view_transaction() { open https://admin.internal.bitpesa.co/transactions/$1 }; view_transaction'
+
+#Social Media
+alias afli='open https://www.linkedin.com/company/azafinance/posts/\?feedView=all'
+alias fwli='open https://www.linkedin.com/company/flutterwave/posts/\?feedView=all'
+alias isli='open https://www.linkedin.com/company/interswitch-limited/posts/\?feedView=all'
+alias wmli='open https://www.linkedin.com/company/wavemoney/posts/\?feedView=all'
+alias oafc='afcomp() {  wmli && fwli && isli && clear };afcomp'
 
 #Code Pipelines
 alias bap='open https://eu-west-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/Bitpesa-Admin-Pipeline/view\?region=eu-west-1 && clear'
 alias ersp='open  https://eu-west-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/Exchange-Rates-Service-Pipeline/view\?region=eu-west-1 && clear'
+alias adev='open https://487483287434.signin.aws.amazon.com/console'
 
 #Postmark emails
 alias pafps='open https://account.postmarkapp.com/servers/5263111/streams/outbound/events && clear'
@@ -48,6 +62,7 @@ alias pbps='open https://account.postmarkapp.com/servers/1883531/streams/outboun
 alias psl='open https://account.postmarkapp.com/servers && clear'
 
 alias staging='source ~/kube_config/setup_staging.sh'
+alias development='source ~/kube_config/setup_dev.sh'
 
 #tmux
 alias tsb='tmux show-buffer'
