@@ -18,6 +18,13 @@ alias gb='git branch'
 alias gs='git status'
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 
+#github
+alias gh='open https://github.com/bitpesa'
+alias gapi='open https://github.com/bitpesa/bitpesa-api'
+alias gadmin='open https://github.com/bitpesa/bitpesa-admin'
+alias gre='open https://github.com/bitpesa/report-engine'
+alias gctl='open https://github.com/bitpesa/azactl'
+
 # commands starting with % for pasting from web
 alias %=' '
 alias rl='. ~/.zshrc'
@@ -54,15 +61,11 @@ alias oafc='afcomp() {  wmli && fwli && isli && clear };afcomp'
 #Code Pipelines
 alias bap='open https://eu-west-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/Bitpesa-Admin-Pipeline/view\?region=eu-west-1 && clear'
 alias ersp='open  https://eu-west-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/Exchange-Rates-Service-Pipeline/view\?region=eu-west-1 && clear'
-alias adev='open https://487483287434.signin.aws.amazon.com/console'
+alias fewsp='open  https://eu-west-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/Aza-Frontend-Workspace-Pipeline/view?region=eu-west-1 && clear'
 
-#Postmark emails
-alias pafps='open https://account.postmarkapp.com/servers/5263111/streams/outbound/events && clear'
-alias pbps='open https://account.postmarkapp.com/servers/1883531/streams/outbound/events && clear'
-alias psl='open https://account.postmarkapp.com/servers && clear'
-
-alias staging='source ~/kube_config/setup_staging.sh'
-alias development='source ~/kube_config/setup_dev.sh'
+alias ascli='source ~/kube_config/aws_setup.sh'
+alias adcli='source ~/kube_config/aws_setup_dev.sh'
+alias kstaging='source ~/kube_config/setup_staging.sh'
 
 #tmux
 alias tsb='tmux show-buffer'

@@ -14,8 +14,19 @@ eval $(/opt/homebrew/bin/brew shellenv)
 source ~/.zlogin
 source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 #enable vi movements in zsh
 bindkey -v
+#copy highlighted text to the clipboard
+function vi-yank-xclip {
+    zle vi-yank
+   echo "$CUTBUFFER" | pbcopy -i
+}
+
+zle -N vi-yank-xclip
+bindkey -M vicmd 'y' vi-yank-xclip
+
+bindkey '^R' history-incremental-search-backward
 
 # To customize prompt, run p10k configure or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -41,3 +52,8 @@ rbenv() {
   esac
 }'
 export PATH='/Users/dermotkilroy/.rbenv/bin:/Users/dermotkilroy/.rbenv/shims:/Users/dermotkilroy/.nvm/versions/node/v14.17.1/bin:/Users/dermotkilroy/bin:/Users/dermotkilroy/.bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:/usr/bin:/usr/bin/ruby:/bin:/usr/sbin:/sbin:/Users/dermotkilroy/.nvm/versions/node/v16.17.1/bin:/Users/dermotkilroy/.cargo/bin'
+
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+  
