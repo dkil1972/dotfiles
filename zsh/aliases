@@ -17,6 +17,7 @@ alias gco='git checkout'
 alias gb='git branch'
 alias gs='git status'
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
+alias grl='revlog() { git log -n $1 --format="%s" --reverse; }; revlog'
 
 #github
 alias gh='open https://github.com/bitpesa'
@@ -50,6 +51,7 @@ alias cbl='open https://azafinance.atlassian.net/jira/software/c/projects/BTA/bo
 alias cbd='open https://azafinance.atlassian.net/jira/software/c/projects/BTA/boards/126/reports/burndown-chart\?estimate=field_customfield_10016 && clear'
 alias tic='view_ticket() { open https://azafinance.atlassian.net/browse/BTA-$1 }; view_ticket'
 alias txn='view_transaction() { open https://admin.internal.bitpesa.co/transactions/$1 }; view_transaction'
+alias cf='open https://azafinance.atlassian.net/wiki/home'
 
 #Social Media
 alias afli='open https://www.linkedin.com/company/azafinance/posts/\?feedView=all'
