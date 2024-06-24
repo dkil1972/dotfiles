@@ -26,9 +26,6 @@ set cpoptions+=$                  " Places a dollar sign at the end of the 'to b
 " case only matters with mixed case expressions
 set ignorecase
 set smartcase
-" Numbers
-set number
-set numberwidth=5
 set nospell
 
 let mapleader = ","
@@ -99,8 +96,17 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set background=dark
 colorscheme distinguished
-set relativenumber
+" Numbers
 set number
+set relativenumber
+set numberwidth=5
+:set number
+
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+:  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+:augroup END
 
 
 "syntax highlight shell scripts as per POSIX,
@@ -245,13 +251,12 @@ map <leader>gf :CommandTFlush<cr>\|:CommandT %%<cr>
 " Esc not working properly out of the box
 let g:CommandTCancelMap=['<ESC>','<C-c>']
 
-map <C>/ :TComment<cr>
+map <C-t> :TComment<cr>
 
 """"""""""""""""""""""""""""""
 " => CTRL-P
 """"""""""""""""""""""""""""""
 let g:ctrlp_working_path_mode = 0
-
 let g:ctrlp_map = '<c-f>'
 map <leader>j :CtrlP<cr>
 map <c-b> :CtrlPBuffer<cr>
