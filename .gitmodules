@@ -76,9 +76,6 @@
 [submodule "vim/pack/plugins/start/vim-js"]
 	path = vim/pack/plugins/start/vim-js
 	url = https://github.com/yuezk/vim-js.git
-[submodule "vim/pack/plugins/start/ultisnips"]
-	path = vim/pack/plugins/start/ultisnips
-	url = https://github.com/SirVer/ultisnips.git
 [submodule "vim/pack/plugins/start/bufexplorer"]
 	path = vim/pack/plugins/start/bufexplorer
 	url = https://github.com/jlanzarotta/bufexplorer.git
