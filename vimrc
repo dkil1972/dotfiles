@@ -1,8 +1,14 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 set nocompatible
-filetype plugin indent on         " Turn on file type detection.
+call plug#begin()
+
+" List your plugins here
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+call plug#end()
 
 set backspace=indent,eol,start
 set tabstop=2
