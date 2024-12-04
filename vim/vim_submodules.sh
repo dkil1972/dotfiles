@@ -1,5 +1,7 @@
 # NOTE Add new submodule command to the top of the list
 # running this script will add any new submodules and fail on existing.
+git submodule add https://github.com/Shougo/vimproc.vim.git pack/plugins/start/vimproc.vim && \
+git submodule add https://github.com/OrangeT/vim-csharp.git pack/plugins/start/vim-csharp && \
 git submodule add https://github.com/yuezk/vim-js.git pack/plugins/start/vim-js && \
 git submodule add https://github.com/tomtom/tlib_vim.git pack/plugins/start/tlib_vim.vim && \
 git submodule add https://github.com/MarcWeber/vim-addon-mw-utils.git pack/plugins/start/vim-addon-mw-utils && \

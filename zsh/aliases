@@ -19,56 +19,19 @@ alias gs='git status'
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 alias grl='revlog() { git log -n $1 --format="%s" --reverse; }; revlog'
 
-#github
-alias gh='open https://github.com/bitpesa'
-alias gapi='open https://github.com/bitpesa/bitpesa-api'
-alias gadmin='open https://github.com/bitpesa/bitpesa-admin'
-alias gre='open https://github.com/bitpesa/report-engine'
-alias gctl='open https://github.com/bitpesa/azactl'
-
 # commands starting with % for pasting from web
 alias %=' '
 alias rl='. ~/.zshrc'
-
 alias ea='vim ~/.zsh/aliases'
 alias vim='nvim'
 
-# projects
-alias df='pushd ~/Dev/personal/dotfiles/'
-alias lr='pushd ~/Dev/ruby/playground/basics/rails'
-alias pr='pushd ~/projects'
-alias re='pushd ~/projects/internal/report-engine'
-alias api='pushd ~/projects/core/api'
-alias admin='pushd ~/projects/core/admin'
-alias as='pushd ~/projects/services/auth-service'
-alias sp='pushd ~/projects/services/square-peg'
+# email inboxes
+alias invg='open https://mail.google.com/mail/u/2/#inbox'
+alias dkg='open https://mail.google.com/mail/u/0/#inbox'
 
-#Google Drive
-alias rcrd='open https://drive.google.com/drive/folders/1rnvMa9CauKkZZLuuJP-yu8OBBguUsC1y'
-
-#Websites 
-alias cs='open https://azafinance.atlassian.net/jira/software/c/projects/BTA/boards/126 && clear'
-alias cbl='open https://azafinance.atlassian.net/jira/software/c/projects/BTA/boards/126/backlog\?view=detail\&selectedIssue=BTA-9426\&issueLimit=100 && clear'
-alias cbd='open https://azafinance.atlassian.net/jira/software/c/projects/BTA/boards/126/reports/burndown-chart\?estimate=field_customfield_10016 && clear'
-alias tic='view_ticket() { open https://azafinance.atlassian.net/browse/BTA-$1 }; view_ticket'
-alias txn='view_transaction() { open https://admin.internal.bitpesa.co/transactions/$1 }; view_transaction'
-alias cf='open https://azafinance.atlassian.net/wiki/home'
-
-#Social Media
-alias afli='open https://www.linkedin.com/company/azafinance/posts/\?feedView=all'
-alias fwli='open https://www.linkedin.com/company/flutterwave/posts/\?feedView=all'
-alias isli='open https://www.linkedin.com/company/interswitch-limited/posts/\?feedView=all'
-alias wmli='open https://www.linkedin.com/company/wavemoney/posts/\?feedView=all'
-alias oafc='afcomp() {  wmli && fwli && isli && clear };afcomp'
-
-#Code Pipelines
-alias bap='open https://eu-west-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/Bitpesa-Admin-Pipeline/view\?region=eu-west-1 && clear'
-alias ersp='open  https://eu-west-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/Exchange-Rates-Service-Pipeline/view\?region=eu-west-1 && clear'
-alias fewsp='open  https://eu-west-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/Aza-Frontend-Workspace-Pipeline/view?region=eu-west-1 && clear'
-
-alias ascli='source ~/kube_config/aws_setup.sh'
-alias adcli='source ~/kube_config/aws_setup_dev.sh'
-alias kstaging='source ~/kube_config/setup_staging.sh'
+alias jap='open https://www.notion.so/Job-Application-Pipeline-90c67923e56149abb9ac2347c43197e1'
+alias cvs='open "https://drive.google.com/drive/u/0/folders/0B7EyGhXLpAqfSWU3UHdITTZkaEk?resourcekey=0-UMoC3eDvdSjIu3xQxi8P2g"'
+alias jsc='open https://www.udemy.com/course/the-complete-javascript-course/learn/lecture/22648183#overview'
 
 #tmux
 alias tsb='tmux show-buffer'
@@ -77,11 +40,3 @@ alias tpb='tmux pasteb'
 alias tls='tmux ls'
 alias tn='tmux_new() { tmux new -s $1 };tmux_new'
 alias tat='tmux_attach() { tmux attach -t $1 };tmux_attach'
-
-#writing
-alias fw='cd ~/freewriting/'
-alias fwti='cd ~/freewriting/team-improvements'
-
-
-#docker tools
-alias edit='docker run -ti --rm -v $(pwd):/home/developer/workspace dkil1972/vim-bundle'

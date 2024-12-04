@@ -31,30 +31,7 @@ bindkey '^R' history-incremental-search-backward
 # To customize prompt, run p10k configure or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-eval 'export RBENV_SHELL=bash
-source '$(brew --prefix)/Cellar/rbenv/1.2.0/libexec/../completions/rbenv.bash'
-command rbenv rehash 2>/dev/null
-rbenv() {
-  local command
-  command="${1:-}"
-  if [ "$#" -gt 0 ]; then
-    shift
-  fi
+# Added by `rbenv init` on Wed 20 Nov 2024 16:11:18 GMT
+eval "$(rbenv init - --no-rehash zsh)"
+export PATH=/Users/dk/.rbenv/shims:/Users/dk/.rbenv/bin:/Users/dk/.nvm/versions/node/v20.11.1/bin:/Users/dk/bin:/Users/dk/.bin:/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/git/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/bin:/usr/bin/ruby:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:/Library/Frameworks/Mono.framework/Versions/6.12.0/bin
 
-  case "$command" in
-  rehash|shell)
-    eval "$(rbenv "sh-$command" "$@")";;
-  *)
-    command rbenv "$command" "$@";;
-  esac
-}'
-export PATH='/Users/dermotkilroy/.rbenv/bin:/Users/dermotkilroy/.rbenv/shims:/Users/dermotkilroy/.nvm/versions/node/v14.17.1/bin:/Users/dermotkilroy/bin:/Users/dermotkilroy/.bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:/usr/bin:/usr/bin/ruby:/bin:/usr/sbin:/sbin:/Users/dermotkilroy/.nvm/versions/node/v16.17.1/bin:/Users/dermotkilroy/.cargo/bin'
-
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-  
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
