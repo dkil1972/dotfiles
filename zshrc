@@ -33,5 +33,6 @@ bindkey '^R' history-incremental-search-backward
 
 # Added by `rbenv init` on Wed 20 Nov 2024 16:11:18 GMT
 eval "$(rbenv init - --no-rehash zsh)"
-export PATH=/Users/dk/.rbenv/shims:/Users/dk/.rbenv/bin:/Users/dk/.nvm/versions/node/v20.11.1/bin:/Users/dk/bin:/Users/dk/.bin:/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/git/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/bin:/usr/bin/ruby:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:/Library/Frameworks/Mono.framework/Versions/6.12.0/bin
+export PATH=/Users/kilroys/g.rbenv/shims:/Users/kilroys/g.rbenv/bin:/Users/kilroys/g.nvm/versions/node/v20.11.1/bin:/Users/kilroys/gbin:/Users/kilroys/g.bin:/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/git/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/bin:/usr/bin/ruby:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:/Library/Frameworks/Mono.framework/Versions/6.12.0/bin
 
+export PATH="/Users/kilroys/Library/Python/3.9/bin:$PATH"
