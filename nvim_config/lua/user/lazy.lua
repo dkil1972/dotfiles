@@ -24,11 +24,11 @@ require("lazy").setup({
 
   -- LSP config
   {
-    "neovim/nvim-lspconfig",
     config = function()
       -- Setup mason-lspconfig
       require("mason-lspconfig").setup({
         ensure_installed = { "lua_ls" },
+        handlers = {}, -- disable default auto-setup
       })
 
       -- Setup lua-language-server
@@ -51,6 +51,7 @@ require("lazy").setup({
         },
       })
     end,
+    "neovim/nvim-lspconfig",
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
