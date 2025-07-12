@@ -23,6 +23,12 @@ vim.api.nvim_create_autocmd("CmdlineEnter", {
   end,
 })
 
+-- Window pane navigation
+keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left pane" })
+keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to pane below" })
+keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to pane above" })
+keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right pane" })
+
 -- expand the diagnostic window
 keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostics" })
 -- telescope file finder
