@@ -1,11 +1,21 @@
 # cd
 alias ..='cd ..'
 
-# ls
-alias ls="ls -F"
-alias l="ls -lAhG"
+# ls (detect GNU vs BSD for color support)
+if ls --color=auto / &>/dev/null; then
+  alias ls="ls -F --color=auto"
+  alias l="ls -lAh --color=auto"
+else
+  alias ls="ls -F"
+  alias l="ls -lAhG"
+fi
 alias ll="ls -l"
 alias la='ls -A'
+
+# open (use xdg-open on Linux)
+if [[ "$(uname)" == "Linux" ]] && ! command -v open &>/dev/null; then
+  alias open='xdg-open'
+fi
 
 # git
 alias gl='git pull'
