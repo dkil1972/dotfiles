@@ -22,8 +22,6 @@ alias mt="docker run -ti --rm -v $(pwd):/code -w \"/code\" node npm test"
 alias ni="docker run -ti --rm -v $(pwd):/code -w \"/code\" node npm install"
 alias ns="docker run -ti --rm -v $(pwd):/home/developer/workspace -w \"/home/developer/workspace\" node npm start"
 alias npmd="docker run -ti --rm -v $(pwd):/home/developer/workspace -w \"/home/developer/workspace\" node"
-alias dqb="docker run -ti --rm --network=reminder_default -e TOKEN=xoxb-150026987874-AvRwJ71fItgbWQsOvEwbc2AT  -v $(pwd):/home/developer/workspace -w \"/home/developer/workspace\" digitallyseamless/nodejs-bower-grunt bash"
-alias dqbl="docker run -ti --rm --network=reminder_default -e TOKEN=xoxb-165950843698-bKeg3FLHuSlWgVLFI6CK0XZU  -v $(pwd):/home/developer/workspace -w \"/home/developer/workspace\" digitallyseamless/nodejs-bower-grunt bash"
 alias ninit="docker run -ti --rm -v $(pwd):/code -w \"/code\" node npm init"
 alias react="docker run -it --rm -v \"$PWD\":/usr/src -w /usr/src -p \"3000:3000\" teracy/create-react-app /bin/bash"
 alias njs="docker run -it --rm -v \"$PWD\":/usr/src -w /usr/src -p \"3000:3000\" juhlig/nextjs_build_pipe /bin/bash"
@@ -33,6 +31,9 @@ alias gdev="docker run -ti --rm -p 8000:8000 -p 9000:9000 -v $(pwd):/app -w \"/a
 
 alias ea='docker run -ti --rm -v /Users/dermot:/home/developer/workspace dkil1972/vim-bundle .dotfiles/bash/aliases'
 alias edit='docker run -ti --rm -v $(pwd):/home/developer/workspace dkil1972/vim-bundle'
+
+# Editors
+alias vim='nvim'
 
 # Git
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
