@@ -18,6 +18,7 @@
         { "Name": "jq", "Source": "main" },
         { "Name": "nvm", "Source": "main" },
         { "Name": "lazygit", "Source": "extras" },
+        { "Name": "obsidian", "Source": "extras" },
         { "Name": "gsudo", "Source": "main" }
     ]
 }
