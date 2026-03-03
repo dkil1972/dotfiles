@@ -21,7 +21,7 @@ echo
 
 # --- Base packages ---
 echo "=== Base Packages ==="
-PACKAGES=(git curl wget build-essential unzip)
+PACKAGES=(git curl wget build-essential unzip tmux)
 MISSING=()
 for pkg in "${PACKAGES[@]}"; do
   if ! dpkg -s "$pkg" &>/dev/null; then
