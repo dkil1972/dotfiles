@@ -22,6 +22,7 @@ const SKIP = new Set([
   "package.json",
   "ttf-bitstream-vera-1.10",
   "nvim_config",
+  "claude_config",
   "windows",
 ]);
 
@@ -119,6 +120,13 @@ async function installDotfiles() {
     mkdirSync(configDir, { recursive: true });
     replaceAll = await handleLink(nvimSource, nvimTarget, "~/.config/nvim", replaceAll);
   }
+
+  // Claude Code settings — symlink into ~/.claude/ (not the whole dir)
+  const claudeSource = join(DOTFILES_DIR, "claude_config", "settings.json");
+  const claudeDir = join(HOME, ".claude");
+  mkdirSync(claudeDir, { recursive: true });
+  const claudeTarget = join(claudeDir, "settings.json");
+  replaceAll = await handleLink(claudeSource, claudeTarget, "~/.claude/settings.json", replaceAll);
 
   // Windows-specific configs
   if (IS_WINDOWS) {
