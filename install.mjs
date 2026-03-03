@@ -1,4 +1,4 @@
-import { readdirSync, lstatSync, readlinkSync, mkdirSync, rmSync, renameSync, symlinkSync, copyFileSync } from "fs";
+import { readdirSync, lstatSync, readlinkSync, mkdirSync, rmSync, renameSync, symlinkSync } from "fs";
 import { join, resolve, basename } from "path";
 import { homedir } from "os";
 import { createInterface } from "readline";
@@ -13,7 +13,6 @@ const SKIP = new Set([
   "install.mjs",
   "restore.mjs",
   "setup_zsh.sh",
-  "setup_linux.sh",
   "README",
   "README.md",
   "README.rdoc",
@@ -21,9 +20,7 @@ const SKIP = new Set([
   "node_modules",
   "package.json",
   "ttf-bitstream-vera-1.10",
-  "tmux",
   "nvim_config",
-  "claude_config",
   "windows",
 ]);
 
@@ -122,21 +119,6 @@ async function installDotfiles() {
     replaceAll = await handleLink(nvimSource, nvimTarget, "~/.config/nvim", replaceAll);
   }
 
-  // tmux config — symlink into ~/.config/tmux/ (tmux looks here via XDG)
-  if (!IS_WINDOWS) {
-    const tmuxSource = join(DOTFILES_DIR, "tmux");
-    const tmuxTarget = join(HOME, ".config", "tmux");
-    mkdirSync(join(HOME, ".config"), { recursive: true });
-    replaceAll = await handleLink(tmuxSource, tmuxTarget, "~/.config/tmux", replaceAll);
-  }
-
-  // Claude Code settings — symlink into ~/.claude/ (not the whole dir)
-  const claudeSource = join(DOTFILES_DIR, "claude_config", "settings.json");
-  const claudeDir = join(HOME, ".claude");
-  mkdirSync(claudeDir, { recursive: true });
-  const claudeTarget = join(claudeDir, "settings.json");
-  replaceAll = await handleLink(claudeSource, claudeTarget, "~/.claude/settings.json", replaceAll);
-
   // Windows-specific configs
   if (IS_WINDOWS) {
     await installWindowsConfigs(replaceAll);
@@ -146,13 +128,12 @@ async function installDotfiles() {
 async function installWindowsConfigs(replaceAll) {
   const windowsDir = join(DOTFILES_DIR, "windows");
 
-  // Windows Terminal — copy instead of symlink (UWP apps can't follow symlinks)
+  // Windows Terminal
   const terminalSource = join(windowsDir, "terminal", "settings.json");
   const terminalDir = findWindowsTerminalDir();
   if (terminalDir) {
     const terminalTarget = join(terminalDir, "settings.json");
-    console.log(`copying ${terminalTarget}`);
-    copyFileSync(terminalSource, terminalTarget);
+    replaceAll = await handleLink(terminalSource, terminalTarget, "Windows Terminal settings.json", replaceAll);
   } else {
     console.log("skipping Windows Terminal (not found)");
   }

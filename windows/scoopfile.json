@@ -15,12 +15,6 @@
         { "Name": "fzf", "Source": "main" },
         { "Name": "fd", "Source": "main" },
         { "Name": "delta", "Source": "main" },
-        { "Name": "jq", "Source": "main" },
-        { "Name": "nvm", "Source": "main" },
-        { "Name": "lazygit", "Source": "extras" },
-        { "Name": "obsidian", "Source": "extras" },
-        { "Name": "gsudo", "Source": "main" },
-        { "Name": "python", "Source": "main" },
-        { "Name": "uv", "Source": "main" }
+        { "Name": "jq", "Source": "main" }
     ]
 }

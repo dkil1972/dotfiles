@@ -206,12 +206,10 @@
                 "source": "Microsoft.WSL"
             },
             {
-                "commandline": "%UserProfile%/scoop/apps/git/current/usr/bin/bash.exe -i -l",
                 "guid": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
                 "hidden": false,
-                "icon": "%UserProfile%/scoop/apps/git/current/usr/share/git/git-for-windows.ico",
                 "name": "Git Bash",
-                "startingDirectory": "%UserProfile%"
+                "source": "Git"
             }
         ]
     },
