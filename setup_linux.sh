@@ -112,6 +112,18 @@ if command -v docker &>/dev/null; then
 fi
 echo
 
+# --- Tailscale ---
+echo "=== Tailscale ==="
+if command -v tailscale &>/dev/null; then
+  echo "Tailscale already installed: $(tailscale version | head -1)"
+else
+  echo "Installing Tailscale..."
+  curl -fsSL https://tailscale.com/install.sh | sh
+  echo "Tailscale installed."
+  echo "Run 'sudo tailscale up' to connect."
+fi
+echo
+
 # --- Zsh setup ---
 echo "=== Zsh Setup ==="
 bash "$DOTFILES_DIR/setup_zsh.sh"
