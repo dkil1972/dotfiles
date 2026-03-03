@@ -46,10 +46,17 @@ if (Test-Path $sshKey) {
     $email = Read-Host "Enter your email for the SSH key"
     ssh-keygen -t ed25519 -C $email
 
-    # Start SSH agent service
-    Get-Service ssh-agent | Set-Service -StartupType Automatic
-    Start-Service ssh-agent
-    ssh-add $sshKey
+    # Start SSH agent service (requires admin privileges)
+    $isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+    if ($isAdmin) {
+        Get-Service ssh-agent | Set-Service -StartupType Automatic
+        Start-Service ssh-agent
+        ssh-add $sshKey
+    } else {
+        Write-Host "Elevating to configure ssh-agent service..." -ForegroundColor Yellow
+        Start-Process powershell -Verb RunAs -Wait -ArgumentList "-Command", "Get-Service ssh-agent | Set-Service -StartupType Automatic; Start-Service ssh-agent"
+        ssh-add $sshKey
+    }
 
     Write-Host ""
     Write-Host "Your public key:" -ForegroundColor Green
