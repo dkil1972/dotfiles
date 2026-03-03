@@ -7,6 +7,8 @@ const DOTFILES_DIR = resolve(import.meta.dirname);
 const HOME = homedir();
 const BACKUP_DIR = join(HOME, ".dotfiles_backup");
 
+const IS_WINDOWS = process.platform === "win32";
+
 const SKIP = new Set([
   "install.mjs",
   "restore.mjs",
@@ -19,6 +21,7 @@ const SKIP = new Set([
   "package.json",
   "ttf-bitstream-vera-1.10",
   "nvim_config",
+  "windows",
 ]);
 
 function prompt(question) {
@@ -103,13 +106,60 @@ async function installDotfiles() {
     replaceAll = await handleLink(source, target, `~/.${file}`, replaceAll);
   }
 
-  // Neovim config setup
+  // Neovim config — different location on Windows vs *nix
   const nvimSource = join(DOTFILES_DIR, "nvim_config");
-  const configDir = join(HOME, ".config");
-  const nvimTarget = join(configDir, "nvim");
+  if (IS_WINDOWS) {
+    const nvimTarget = join(HOME, "AppData", "Local", "nvim");
+    mkdirSync(join(HOME, "AppData", "Local"), { recursive: true });
+    replaceAll = await handleLink(nvimSource, nvimTarget, "~/AppData/Local/nvim", replaceAll);
+  } else {
+    const configDir = join(HOME, ".config");
+    const nvimTarget = join(configDir, "nvim");
+    mkdirSync(configDir, { recursive: true });
+    replaceAll = await handleLink(nvimSource, nvimTarget, "~/.config/nvim", replaceAll);
+  }
 
-  mkdirSync(configDir, { recursive: true });
-  await handleLink(nvimSource, nvimTarget, "~/.config/nvim", replaceAll);
+  // Windows-specific configs
+  if (IS_WINDOWS) {
+    await installWindowsConfigs(replaceAll);
+  }
+}
+
+async function installWindowsConfigs(replaceAll) {
+  const windowsDir = join(DOTFILES_DIR, "windows");
+
+  // Windows Terminal
+  const terminalSource = join(windowsDir, "terminal", "settings.json");
+  const terminalDir = findWindowsTerminalDir();
+  if (terminalDir) {
+    const terminalTarget = join(terminalDir, "settings.json");
+    replaceAll = await handleLink(terminalSource, terminalTarget, "Windows Terminal settings.json", replaceAll);
+  } else {
+    console.log("skipping Windows Terminal (not found)");
+  }
+
+  // VS Code
+  const vscodeSource = join(windowsDir, "vscode", "settings.json");
+  const vscodeDir = join(process.env.APPDATA, "Code", "User");
+  if (pathExists(vscodeDir)) {
+    const vscodeTarget = join(vscodeDir, "settings.json");
+    replaceAll = await handleLink(vscodeSource, vscodeTarget, "VS Code settings.json", replaceAll);
+  } else {
+    console.log("skipping VS Code (not found)");
+  }
+}
+
+function findWindowsTerminalDir() {
+  const packagesDir = join(process.env.LOCALAPPDATA, "Packages");
+  if (!pathExists(packagesDir)) return null;
+  try {
+    const match = readdirSync(packagesDir).find((d) => d.startsWith("Microsoft.WindowsTerminal"));
+    if (!match) return null;
+    const dir = join(packagesDir, match, "LocalState");
+    return pathExists(dir) ? dir : null;
+  } catch {
+    return null;
+  }
 }
 
 installDotfiles();

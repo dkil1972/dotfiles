@@ -1,0 +1,8 @@
+{
+    "workbench.colorTheme": "Visual Studio Dark",
+    "terminal.integrated.fontSize": 15,
+    "editor.fontSize": 18,
+    "chat.viewSessions.orientation": "stacked",
+    "claudeCode.preferredLocation": "panel",
+    "workbench.startupEditor": "none"
+}

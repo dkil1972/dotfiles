@@ -1,0 +1,20 @@
+{
+    "buckets": [
+        {
+            "Name": "main",
+            "Source": "https://github.com/ScoopInstaller/Main"
+        },
+        {
+            "Name": "extras",
+            "Source": "https://github.com/ScoopInstaller/Extras"
+        }
+    ],
+    "apps": [
+        { "Name": "neovim", "Source": "main" },
+        { "Name": "ripgrep", "Source": "main" },
+        { "Name": "fzf", "Source": "main" },
+        { "Name": "fd", "Source": "main" },
+        { "Name": "delta", "Source": "main" },
+        { "Name": "jq", "Source": "main" }
+    ]
+}
