@@ -124,6 +124,12 @@ else
 fi
 echo
 
+# --- Playwright (for Claude Code MCP) ---
+echo "=== Playwright ==="
+echo "Installing Playwright Chromium + system dependencies..."
+npx playwright install --with-deps chromium
+echo
+
 # --- Zsh setup ---
 echo "=== Zsh Setup ==="
 bash "$DOTFILES_DIR/setup_zsh.sh"
