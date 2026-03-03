@@ -94,7 +94,7 @@ if (Test-Path $scoopfile) {
 
     # Install gsudo first so we can elevate for packages that need admin
     Write-Host "Installing gsudo..."
-    scoop install extras/gsudo
+    scoop install main/gsudo
 
     Write-Host "Importing packages from scoopfile.json..."
     scoop import $scoopfile
