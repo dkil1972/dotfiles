@@ -13,6 +13,7 @@ const SKIP = new Set([
   "install.mjs",
   "restore.mjs",
   "setup_zsh.sh",
+  "setup_linux.sh",
   "README",
   "README.md",
   "README.rdoc",

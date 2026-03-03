@@ -1,93 +1,104 @@
 # Dotfiles
 
-Shell, editor, and terminal config for bash/zsh + Neovim + tmux. Works on macOS, Linux, and Windows (via Git Bash).
+Shell, editor, and terminal config for bash/zsh + Neovim + tmux. Works on macOS, Linux, and Windows (via Git Bash + WSL2).
 
-## Setup
+## Fresh Windows Machine
 
-### 1. Clone and install symlinks
+Run this in PowerShell on a brand new Windows 11 machine — no prerequisites needed:
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+irm https://raw.githubusercontent.com/dkil1972/dotfiles/master/windows/bootstrap.ps1 -OutFile bootstrap.ps1
+.\bootstrap.ps1
+```
+
+This will:
+1. Install [Scoop](https://scoop.sh), Git, and NVM
+2. Install Node.js LTS
+3. Generate an SSH key and help you add it to GitHub
+4. Clone this repo and install all dev tools (neovim, ripgrep, fzf, fd, delta, jq, lazygit)
+5. Create dotfile symlinks (Windows Terminal, VS Code, Neovim, Git Bash)
+6. Optionally install WSL2 + Ubuntu (requires reboot)
+
+After rebooting (if WSL2 was installed), open Ubuntu and run the Linux setup below.
+
+## Fresh Linux / WSL2
+
+Works on WSL2 (Ubuntu) and native Debian-based distros (Pop!_OS, etc.):
 
 ```sh
-git clone git@github.com:<your-username>/dotfiles.git ~/.dotfiles
+git clone git@github.com:dkil1972/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+bash setup_linux.sh
+```
+
+This will:
+1. Install base packages (git, curl, build-essential, etc.)
+2. Install NVM + Node.js LTS
+3. Install Docker Engine (for running containers — e.g. MCP servers)
+4. Set up zsh with powerlevel10k and autosuggestions
+5. Create dotfile symlinks
+
+After it finishes, log out and back in for Docker group membership, then open a new terminal.
+
+## Manual Setup
+
+If you already have Git and Node.js, you can run the pieces individually:
+
+### Clone and install symlinks
+
+```sh
+git clone git@github.com:dkil1972/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 node install.mjs
 ```
 
-This creates `~/.zshrc`, `~/.bash_profile`, `~/.tmux`, etc. as symlinks pointing back into this repo. It also links `~/.config/nvim` to the Neovim config.
-
+Creates `~/.zshrc`, `~/.bash_profile`, `~/.tmux`, etc. as symlinks into this repo.
 If a file already exists you'll be prompted: `[y]es / [n]o / [a]ll / [q]uit`.
-Existing files are backed up to `~/.dotfiles_backup/` before being replaced.
+Existing files are backed up to `~/.dotfiles_backup/`.
 
-### 2. Set up zsh (optional)
-
-If you're on a fresh Ubuntu/WSL install without zsh:
+### Set up zsh (Linux only)
 
 ```sh
 bash setup_zsh.sh
 ```
 
-This installs zsh and sets it as your default shell. Open a new terminal tab afterwards.
+### Windows re-run (from Git Bash)
 
-### 3. If something goes wrong
+```sh
+bash windows/setup.sh
+```
+
+Re-imports Scoop packages and re-runs symlinks. Useful after pulling new changes.
+
+### Restore backups
 
 ```sh
 node restore.mjs
 ```
 
-This moves everything from `~/.dotfiles_backup/` back to its original location, removing the symlinks.
+Moves everything from `~/.dotfiles_backup/` back to its original location.
 
-## What's included
-
-| Path | Description |
-|------|-------------|
-| `zshrc`, `zsh/` | Zsh config, aliases, completions |
-| `bash_profile`, `bash/` | Bash config and aliases |
-| `nvim_config/` | Neovim config (linked to `~/.config/nvim`) |
-| `tmux/` | Tmux configuration |
-| `bin/` | Scripts added to PATH |
-| `gitignore` | Global gitignore |
-
-## Windows Setup
-
-On a fresh Windows machine with Git Bash:
-
-```sh
-git clone git@github.com:<your-username>/dotfiles.git ~/dotfiles
-cd ~/dotfiles
-bash windows/setup.sh
-```
-
-This will:
-1. Install [Scoop](https://scoop.sh) (if not already present)
-2. Import dev tools from `windows/scoopfile.json` (neovim, ripgrep, fzf, etc.)
-3. Run `install.mjs` which detects Windows and symlinks:
-   - Windows Terminal settings
-   - VS Code settings
-   - Neovim config (to `~/AppData/Local/nvim`)
-   - Git Bash config (bash_profile, aliases, etc.)
-
-To capture newly installed scoop packages:
-
-```sh
-scoop export > windows/scoopfile.json
-```
-
-## What's included
+## What's Included
 
 | Path | Description |
 |------|-------------|
-| `zshrc`, `zsh/` | Zsh config, aliases, completions |
+| `zshrc`, `zsh/` | Zsh config, aliases, completions, functions |
 | `bash_profile`, `bash/` | Bash config and aliases |
 | `nvim_config/` | Neovim config (`~/.config/nvim` or `~/AppData/Local/nvim`) |
 | `tmux/` | Tmux configuration |
 | `bin/` | Scripts added to PATH |
 | `gitignore` | Global gitignore |
+| `windows/bootstrap.ps1` | Fresh Windows machine bootstrap (PowerShell) |
+| `windows/setup.sh` | Windows re-run script (Git Bash) |
+| `windows/scoopfile.json` | Scoop package manifest |
 | `windows/terminal/` | Windows Terminal settings |
 | `windows/vscode/` | VS Code settings |
-| `windows/scoopfile.json` | Scoop package manifest |
-| `windows/setup.sh` | Windows bootstrap script |
+| `setup_linux.sh` | Linux/WSL2 bootstrap (zsh, Docker, NVM, symlinks) |
+| `setup_zsh.sh` | Zsh + plugin installer (Linux) |
 
 ## Requirements
 
-- Node.js (for install/restore scripts)
-- Neovim (aliased as `vim` in both bash and zsh)
-- Windows: Git Bash (comes with Git for Windows)
+- **Fresh Windows**: Nothing — `bootstrap.ps1` installs everything
+- **Fresh Linux/WSL2**: `git` and `curl` (or just run `setup_linux.sh` which installs them)
+- **Manual setup**: Node.js (for install/restore scripts)
