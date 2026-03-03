@@ -90,9 +90,19 @@ Write-Host ""
 Write-Host "=== Scoop Packages ===" -ForegroundColor Yellow
 $scoopfile = "$dotfilesDir\windows\scoopfile.json"
 if (Test-Path $scoopfile) {
-    Write-Host "Importing packages from scoopfile.json..."
     scoop bucket add extras 2>$null
+
+    # Install gsudo first so we can elevate for packages that need admin
+    Write-Host "Installing gsudo..."
+    scoop install extras/gsudo
+
+    Write-Host "Importing packages from scoopfile.json..."
     scoop import $scoopfile
+
+    # Tailscale requires admin privileges to install
+    Write-Host "Installing Tailscale (requires elevation)..."
+    gsudo scoop install extras/tailscale
+
     Write-Host "Packages installed."
 } else {
     Write-Host "WARNING: scoopfile.json not found at $scoopfile" -ForegroundColor Red
