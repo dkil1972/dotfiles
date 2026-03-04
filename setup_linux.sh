@@ -63,6 +63,17 @@ else
 fi
 echo
 
+# --- Claude Code CLI ---
+echo "=== Claude Code ==="
+if command -v claude &>/dev/null; then
+  echo "Claude Code already installed."
+else
+  echo "Installing Claude Code CLI..."
+  npm install -g @anthropic-ai/claude-code
+  echo "Claude Code installed."
+fi
+echo
+
 # --- Docker Engine ---
 echo "=== Docker Engine ==="
 if command -v docker &>/dev/null; then

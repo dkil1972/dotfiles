@@ -86,6 +86,17 @@ if (Test-Path $dotfilesDir) {
 }
 Write-Host ""
 
+# --- Claude Code CLI ---
+Write-Host "=== Claude Code ===" -ForegroundColor Yellow
+if (Get-Command claude -ErrorAction SilentlyContinue) {
+    Write-Host "Claude Code already installed."
+} else {
+    Write-Host "Installing Claude Code CLI..."
+    npm install -g @anthropic-ai/claude-code
+    Write-Host "Claude Code installed."
+}
+Write-Host ""
+
 # --- Scoop packages ---
 Write-Host "=== Scoop Packages ===" -ForegroundColor Yellow
 $scoopfile = "$dotfilesDir\windows\scoopfile.json"
