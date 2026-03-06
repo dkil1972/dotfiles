@@ -206,7 +206,7 @@
                 "source": "Microsoft.WSL"
             },
             {
-                "commandline": "C:\\Users\\DK\\scoop\\apps\\git\\2.53.0\\usr\\bin\\bash.exe -i -l",
+                "commandline": "%USERPROFILE%/scoop/apps/git/current/bin/bash.exe -i -l",
                 "guid": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
                 "hidden": false,
                 "icon": "%USERPROFILE%\\scoop\\apps\\git\\current\\mingw64\\share\\git\\git-for-windows.ico",

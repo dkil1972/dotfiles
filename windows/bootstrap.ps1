@@ -59,6 +59,29 @@ if (Get-Command claude -ErrorAction SilentlyContinue) {
 }
 Write-Host ""
 
+# --- SSH agent ---
+Write-Host "=== SSH Agent ===" -ForegroundColor Yellow
+$isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+$agentService = Get-Service ssh-agent
+if ($agentService.StartType -ne 'Automatic' -or $agentService.Status -ne 'Running') {
+    Write-Host "Configuring ssh-agent service..."
+    if ($isAdmin) {
+        Get-Service ssh-agent | Set-Service -StartupType Automatic
+        Start-Service ssh-agent
+    } else {
+        Write-Host "Elevating to configure ssh-agent service..." -ForegroundColor Yellow
+        Start-Process powershell -Verb RunAs -Wait -ArgumentList "-Command", "Get-Service ssh-agent | Set-Service -StartupType Automatic; Start-Service ssh-agent"
+    }
+    Write-Host "ssh-agent service enabled and started."
+} else {
+    Write-Host "ssh-agent service already running."
+}
+
+# Tell git to use Windows OpenSSH so it connects to the Windows ssh-agent
+git config --global core.sshCommand "C:/Windows/System32/OpenSSH/ssh.exe"
+Write-Host "Configured git to use Windows OpenSSH."
+Write-Host ""
+
 # --- SSH key ---
 Write-Host "=== SSH Key ===" -ForegroundColor Yellow
 $sshKey = "$HOME\.ssh\id_ed25519"
@@ -68,18 +91,6 @@ if (Test-Path $sshKey) {
     $email = Read-Host "Enter your email for the SSH key"
     ssh-keygen -t ed25519 -C $email
 
-    # Start SSH agent service (requires admin privileges)
-    $isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
-    if ($isAdmin) {
-        Get-Service ssh-agent | Set-Service -StartupType Automatic
-        Start-Service ssh-agent
-        ssh-add $sshKey
-    } else {
-        Write-Host "Elevating to configure ssh-agent service..." -ForegroundColor Yellow
-        Start-Process powershell -Verb RunAs -Wait -ArgumentList "-Command", "Get-Service ssh-agent | Set-Service -StartupType Automatic; Start-Service ssh-agent"
-        ssh-add $sshKey
-    }
-
     Write-Host ""
     Write-Host "Your public key:" -ForegroundColor Green
     Write-Host ""
@@ -87,11 +98,20 @@ if (Test-Path $sshKey) {
     Write-Host ""
     Write-Host "Add this key to GitHub: Settings -> SSH and GPG keys -> New SSH key" -ForegroundColor Green
     Read-Host "Press Enter after adding the key to GitHub"
-
-    # Verify
-    Write-Host "Verifying GitHub connection..."
-    ssh -T git@github.com 2>&1 | Write-Host
 }
+
+# Add key to agent if not already added
+$addedKeys = & "C:\Windows\System32\OpenSSH\ssh-add.exe" -l 2>&1
+if ($addedKeys -notmatch "ed25519") {
+    Write-Host "Adding SSH key to agent (you will be prompted for your passphrase)..."
+    & "C:\Windows\System32\OpenSSH\ssh-add.exe" $sshKey
+} else {
+    Write-Host "SSH key already in agent."
+}
+
+# Verify GitHub connection
+Write-Host "Verifying GitHub connection..."
+& "C:\Windows\System32\OpenSSH\ssh.exe" -T git@github.com 2>&1 | Write-Host
 Write-Host ""
 
 # --- Clone dotfiles ---
