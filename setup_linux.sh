@@ -21,7 +21,7 @@ echo
 
 # --- Base packages ---
 echo "=== Base Packages ==="
-PACKAGES=(git curl wget build-essential unzip tmux)
+PACKAGES=(git curl wget build-essential unzip tmux openssh-server gh)
 MISSING=()
 for pkg in "${PACKAGES[@]}"; do
   if ! dpkg -s "$pkg" &>/dev/null; then
@@ -34,6 +34,13 @@ if [[ ${#MISSING[@]} -gt 0 ]]; then
   sudo apt update && sudo apt install -y "${MISSING[@]}"
 else
   echo "All base packages already installed."
+fi
+
+# Start and enable SSH server
+if systemctl is-system-running &>/dev/null 2>&1; then
+  sudo systemctl enable --now ssh
+else
+  sudo service ssh start
 fi
 echo
 
