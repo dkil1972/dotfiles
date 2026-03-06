@@ -92,7 +92,7 @@
     ],
     "copyFormatting": "none",
     "copyOnSelect": false,
-    "defaultProfile": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
+    "defaultProfile": "{b7cfa637-84fd-5863-a328-130b2d896917}",
     "keybindings":
     [
         {
@@ -206,10 +206,11 @@
                 "source": "Microsoft.WSL"
             },
             {
+                "commandline": "C:\\Users\\DK\\scoop\\apps\\git\\2.53.0\\usr\\bin\\bash.exe -i -l",
                 "guid": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
                 "hidden": false,
-                "name": "Git Bash",
-                "source": "Git"
+                "icon": "%USERPROFILE%\\scoop\\apps\\git\\current\\mingw64\\share\\git\\git-for-windows.ico",
+                "name": "Git Bash"
             }
         ]
     },

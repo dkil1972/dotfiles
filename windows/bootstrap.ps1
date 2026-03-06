@@ -37,6 +37,28 @@ if (Get-Command node -ErrorAction SilentlyContinue) {
 }
 Write-Host ""
 
+# --- pnpm ---
+Write-Host "=== pnpm ===" -ForegroundColor Yellow
+if (Get-Command pnpm -ErrorAction SilentlyContinue) {
+    Write-Host "pnpm already installed: $(pnpm --version)"
+} else {
+    Write-Host "Installing pnpm..."
+    npm install -g pnpm
+    Write-Host "pnpm installed: $(pnpm --version)"
+}
+Write-Host ""
+
+# --- Claude Code ---
+Write-Host "=== Claude Code ===" -ForegroundColor Yellow
+if (Get-Command claude -ErrorAction SilentlyContinue) {
+    Write-Host "Claude Code already installed."
+} else {
+    Write-Host "Installing Claude Code..."
+    npm install -g @anthropic-ai/claude-code
+    Write-Host "Claude Code installed."
+}
+Write-Host ""
+
 # --- SSH key ---
 Write-Host "=== SSH Key ===" -ForegroundColor Yellow
 $sshKey = "$HOME\.ssh\id_ed25519"
@@ -157,9 +179,10 @@ Write-Host "=== Bootstrap Complete ===" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Installed:"
 Write-Host "  - Scoop (package manager)"
-Write-Host "  - Git, NVM, Node.js LTS"
+Write-Host "  - Git, NVM, Node.js LTS, pnpm"
+Write-Host "  - Claude Code"
 Write-Host "  - Dev tools (neovim, ripgrep, fzf, fd, delta, jq, lazygit)"
-Write-Host "  - Dotfile symlinks (terminal, vscode, nvim, git bash)"
+Write-Host "  - Dotfile symlinks (terminal, vscode, nvim, git bash, claude)"
 if ($installWSL -eq 'y') {
     Write-Host "  - WSL2 + Ubuntu (reboot required)"
 }
