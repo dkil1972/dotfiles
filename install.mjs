@@ -1,4 +1,4 @@
-import { readdirSync, lstatSync, readlinkSync, mkdirSync, rmSync, renameSync, symlinkSync } from "fs";
+import { readdirSync, lstatSync, readlinkSync, mkdirSync, rmSync, renameSync, symlinkSync, copyFileSync } from "fs";
 import { join, resolve, basename } from "path";
 import { homedir } from "os";
 import { createInterface } from "readline";
@@ -137,12 +137,13 @@ async function installDotfiles() {
 async function installWindowsConfigs(replaceAll) {
   const windowsDir = join(DOTFILES_DIR, "windows");
 
-  // Windows Terminal
+  // Windows Terminal — copy instead of symlink (UWP apps can't follow symlinks)
   const terminalSource = join(windowsDir, "terminal", "settings.json");
   const terminalDir = findWindowsTerminalDir();
   if (terminalDir) {
     const terminalTarget = join(terminalDir, "settings.json");
-    replaceAll = await handleLink(terminalSource, terminalTarget, "Windows Terminal settings.json", replaceAll);
+    console.log(`copying ${terminalTarget}`);
+    copyFileSync(terminalSource, terminalTarget);
   } else {
     console.log("skipping Windows Terminal (not found)");
   }
