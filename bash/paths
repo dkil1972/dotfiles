@@ -1,6 +1,8 @@
-PATH=$PATH:$HOME/Scripts
+# Homebrew (macOS)
+if [[ -d /opt/homebrew/bin ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -d /usr/local/homebrew/bin ]]; then
+  eval "$(/usr/local/homebrew/bin/brew shellenv)"
+fi
 
-#Mac friendly paths
-PATH="~/bin:~/.bin:/usr/local/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH"
-
-MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
+PATH=$PATH:$HOME/Scripts:$HOME/bin:$HOME/.local/bin
