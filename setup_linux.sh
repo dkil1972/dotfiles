@@ -149,6 +149,11 @@ if command -v nvim &>/dev/null && nvim --version | head -1 | grep -q "${NVIM_VER
   echo "Neovim ${NVIM_VERSION} already installed."
 else
   echo "Installing Neovim ${NVIM_VERSION}..."
+  # Remove apt-installed neovim to avoid PATH conflicts
+  if dpkg -s neovim &>/dev/null; then
+    echo "Removing apt-installed neovim (too old for modern plugins)..."
+    sudo apt remove -y neovim
+  fi
   curl -fsSL "https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/nvim-linux-x86_64.tar.gz" -o /tmp/nvim.tar.gz
   sudo rm -rf /opt/nvim
   sudo tar -xzf /tmp/nvim.tar.gz -C /opt
@@ -156,6 +161,20 @@ else
   sudo ln -sf /opt/nvim/bin/nvim /usr/local/bin/nvim
   rm /tmp/nvim.tar.gz
   echo "Neovim installed: $(nvim --version | head -1)"
+fi
+echo
+
+# --- Obsidian (from GitHub releases .deb) ---
+OBSIDIAN_VERSION="1.8.9"
+echo "=== Obsidian ==="
+if command -v obsidian &>/dev/null; then
+  echo "Obsidian already installed."
+else
+  echo "Installing Obsidian ${OBSIDIAN_VERSION}..."
+  curl -fsSL "https://github.com/obsidianmd/obsidian-releases/releases/download/v${OBSIDIAN_VERSION}/obsidian_${OBSIDIAN_VERSION}_amd64.deb" -o /tmp/obsidian.deb
+  sudo dpkg -i /tmp/obsidian.deb || sudo apt install -f -y
+  rm /tmp/obsidian.deb
+  echo "Obsidian installed."
 fi
 echo
 

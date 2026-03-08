@@ -23,7 +23,8 @@
       "Bash(gsettings get org.gnome.desktop.interface scaling-factor)",
       "Bash(dpkg -l)",
       "Bash(xrandr 2>/dev/null | grep -E 'connected|current' | head -5)",
-      "Bash(sudo apt update && sudo apt install -y neovim 2>&1 | tail -5)"
+      "Bash(sudo apt update && sudo apt install -y neovim 2>&1 | tail -5)",
+      "Bash(sudo apt remove -y neovim 2>&1 | tail -3)"
     ]
   }
 }

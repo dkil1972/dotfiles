@@ -43,6 +43,10 @@ alias jap='open https://www.notion.so/Job-Application-Pipeline-90c67923e56149abb
 alias cvs='open "https://drive.google.com/drive/u/0/folders/0B7EyGhXLpAqfSWU3UHdITTZkaEk?resourcekey=0-UMoC3eDvdSjIu3xQxi8P2g"'
 alias jsc='open https://www.udemy.com/course/the-complete-javascript-course/learn/lecture/22648183#overview'
 
+# folders
+alias df='cd ~/dev/personal/dotfiles/'
+alias jst='cd ~/dev/javascript/job-search-toolkit'
+
 #tmux
 alias tsb='tmux show-buffer'
 alias tlb='tmux list-buffer'
@@ -50,3 +54,5 @@ alias tpb='tmux pasteb'
 alias tls='tmux ls'
 alias tn='tmux_new() { tmux new -s $1 };tmux_new'
 alias tat='tmux_attach() { tmux attach -t $1 };tmux_attach'
+
+
