@@ -21,6 +21,7 @@ const SKIP = new Set([
   "node_modules",
   "package.json",
   "ttf-bitstream-vera-1.10",
+  "tmux",
   "nvim_config",
   "claude_config",
   "windows",
@@ -119,6 +120,14 @@ async function installDotfiles() {
     const nvimTarget = join(configDir, "nvim");
     mkdirSync(configDir, { recursive: true });
     replaceAll = await handleLink(nvimSource, nvimTarget, "~/.config/nvim", replaceAll);
+  }
+
+  // tmux config — symlink into ~/.config/tmux/ (tmux looks here via XDG)
+  if (!IS_WINDOWS) {
+    const tmuxSource = join(DOTFILES_DIR, "tmux");
+    const tmuxTarget = join(HOME, ".config", "tmux");
+    mkdirSync(join(HOME, ".config"), { recursive: true });
+    replaceAll = await handleLink(tmuxSource, tmuxTarget, "~/.config/tmux", replaceAll);
   }
 
   // Claude Code settings — symlink into ~/.claude/ (not the whole dir)
