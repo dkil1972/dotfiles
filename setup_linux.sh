@@ -148,6 +148,19 @@ echo "Installing Playwright Chromium + system dependencies..."
 npx playwright install --with-deps chromium
 echo
 
+# --- HiDPI scaling (native Linux with XFCE only) ---
+if [[ "$IS_WSL" == false ]] && command -v xfconf-query &>/dev/null; then
+  echo "=== HiDPI Scaling (XFCE) ==="
+  echo "Applying 1.75x scaling for 4K displays..."
+  xfconf-query -c xsettings -p /Gdk/WindowScalingFactor -s 1
+  xfconf-query -c xsettings -p /Xft/DPI -s 168
+  xfconf-query -c xsettings -p /Gtk/CursorThemeSize -s 42
+  xfconf-query -c xfce4-panel -p /panels/panel-1/size -s 42 2>/dev/null || true
+  xfconf-query -c xfce4-desktop -p /desktop-icons/icon-size -s 64 2>/dev/null || true
+  echo "HiDPI scaling applied (log out/in for full effect)."
+  echo
+fi
+
 # --- Zsh setup ---
 echo "=== Zsh Setup ==="
 bash "$DOTFILES_DIR/setup_zsh.sh"

@@ -54,6 +54,9 @@
       }
     ]
   },
+  "enabledPlugins": {
+    "playwright@claude-plugins-official": true
+  },
   "mcpServers": {
     "playwright": {
       "command": "npx",
@@ -62,8 +65,5 @@
         "--headless"
       ]
     }
-  },
-  "enabledPlugins": {
-    "playwright@claude-plugins-official": true
   }
 }
