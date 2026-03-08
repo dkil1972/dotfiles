@@ -5,9 +5,19 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Start SSH agent if not already running
+# Start SSH agent if not already running, reuse across terminals
+SSH_ENV="$HOME/.ssh/agent-env"
 if [ -z "$SSH_AUTH_SOCK" ]; then
-  eval "$(ssh-agent -s)" > /dev/null
+  if [ -f "$SSH_ENV" ]; then
+    . "$SSH_ENV" > /dev/null
+    kill -0 "$SSH_AGENT_PID" 2>/dev/null || {
+      eval "$(ssh-agent -s)" > /dev/null
+      echo "export SSH_AUTH_SOCK=$SSH_AUTH_SOCK; export SSH_AGENT_PID=$SSH_AGENT_PID" > "$SSH_ENV"
+    }
+  else
+    eval "$(ssh-agent -s)" > /dev/null
+    echo "export SSH_AUTH_SOCK=$SSH_AUTH_SOCK; export SSH_AGENT_PID=$SSH_AGENT_PID" > "$SSH_ENV"
+  fi
   ssh-add ~/.ssh/id_ed25519 2>/dev/null
 fi
 

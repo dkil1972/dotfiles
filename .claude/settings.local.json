@@ -17,7 +17,13 @@
       "Bash(node:*)",
       "Bash(nvim:*)",
       "Bash(scoop install:*)",
-      "Bash(scoop:*)"
+      "Bash(scoop:*)",
+      "Bash(xdpyinfo)",
+      "Bash(gsettings get org.cinnamon.desktop.interface scaling-factor)",
+      "Bash(gsettings get org.gnome.desktop.interface scaling-factor)",
+      "Bash(dpkg -l)",
+      "Bash(xrandr 2>/dev/null | grep -E 'connected|current' | head -5)",
+      "Bash(sudo apt update && sudo apt install -y neovim 2>&1 | tail -5)"
     ]
   }
 }

@@ -142,6 +142,23 @@ else
 fi
 echo
 
+# --- Neovim (from GitHub releases — apt version is too old for modern plugins) ---
+NVIM_VERSION="v0.11.1"
+echo "=== Neovim ==="
+if command -v nvim &>/dev/null && nvim --version | head -1 | grep -q "${NVIM_VERSION#v}"; then
+  echo "Neovim ${NVIM_VERSION} already installed."
+else
+  echo "Installing Neovim ${NVIM_VERSION}..."
+  curl -fsSL "https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/nvim-linux-x86_64.tar.gz" -o /tmp/nvim.tar.gz
+  sudo rm -rf /opt/nvim
+  sudo tar -xzf /tmp/nvim.tar.gz -C /opt
+  sudo mv /opt/nvim-linux-x86_64 /opt/nvim
+  sudo ln -sf /opt/nvim/bin/nvim /usr/local/bin/nvim
+  rm /tmp/nvim.tar.gz
+  echo "Neovim installed: $(nvim --version | head -1)"
+fi
+echo
+
 # --- Playwright (for Claude Code MCP) ---
 echo "=== Playwright ==="
 echo "Installing Playwright Chromium + system dependencies..."
