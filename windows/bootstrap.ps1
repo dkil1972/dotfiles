@@ -59,6 +59,24 @@ if (Get-Command claude -ErrorAction SilentlyContinue) {
 }
 Write-Host ""
 
+# --- Python + UV ---
+Write-Host "=== Python + UV ===" -ForegroundColor Yellow
+if (Get-Command python -ErrorAction SilentlyContinue) {
+    Write-Host "Python already installed: $(python --version)"
+} else {
+    Write-Host "Installing Python via Scoop..."
+    scoop install python
+    Write-Host "Python installed: $(python --version)"
+}
+if (Get-Command uv -ErrorAction SilentlyContinue) {
+    Write-Host "UV already installed: $(uv --version)"
+} else {
+    Write-Host "Installing UV via Scoop..."
+    scoop install uv
+    Write-Host "UV installed: $(uv --version)"
+}
+Write-Host ""
+
 # --- SSH agent ---
 Write-Host "=== SSH Agent ===" -ForegroundColor Yellow
 $isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)

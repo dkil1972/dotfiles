@@ -19,4 +19,7 @@ require("lazy").setup({
   { import = "user.plugins.completion" },
   { import = "user.plugins.lsp" },
   { import = "user.plugins.javascript" },
+  { import = "user.plugins.git" },
+}, {
+  rocks = { enabled = false },
 })

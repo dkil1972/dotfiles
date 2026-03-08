@@ -1,5 +1,5 @@
 #!/bin/bash
-# Unified Linux bootstrap — works on WSL2 (Ubuntu) and native Linux (Pop!_OS / Debian-based)
+# Unified Linux bootstrap — works on WSL2 (Ubuntu) and native Linux (Mint / Pop!_OS / Debian-based)
 set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -100,7 +100,7 @@ else
   fi
 
   # Add Docker repo
-  # Use Ubuntu codename — works for Pop!_OS too (based on Ubuntu)
+  # Use Ubuntu codename — works for Mint / Pop!_OS too (based on Ubuntu)
   UBUNTU_CODENAME=$(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
   echo \
     "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \

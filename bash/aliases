@@ -28,6 +28,10 @@ alias vim='nvim'
 # Misc
 alias ea='nvim ~/.bash/aliases'
 alias rl='. ~/.bashrc'
-alias df='cd ~/dev/personal/dotfiles'
 alias h='history | tail -30'
 alias cls='clear'
+
+# goto directories
+alias df='cd ~/dev/personal/dotfiles'
+alias jst='cd ~/dev/javascript/job-search-toolkit'
+

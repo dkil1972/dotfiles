@@ -1,5 +1,59 @@
 {
   "model": "opus",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run ~/.claude/hooks/prompt-injection-defender/post-tool-defender.py",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "WebFetch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run ~/.claude/hooks/prompt-injection-defender/post-tool-defender.py",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run ~/.claude/hooks/prompt-injection-defender/post-tool-defender.py",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Grep",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run ~/.claude/hooks/prompt-injection-defender/post-tool-defender.py",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run ~/.claude/hooks/prompt-injection-defender/post-tool-defender.py",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  },
   "mcpServers": {
     "playwright": {
       "command": "npx",
@@ -8,5 +62,8 @@
         "--headless"
       ]
     }
+  },
+  "enabledPlugins": {
+    "playwright@claude-plugins-official": true
   }
 }

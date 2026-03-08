@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(where git)",
+      "Read(//c/Program Files/Git/**)",
+      "Read(//c/Users/DK/dev/personal/dotfiles/$HOME/scoop/apps/git/current/usr/bin/**)",
+      "Read(//c/Users/DK/dev/personal/dotfiles/$HOME/scoop/apps/git/current/bin/**)",
+      "Read(//c/Users/DK/dev/personal/dotfiles/$HOME/scoop/apps/git/current/**)",
+      "Read(//c/Users/DK/dev/personal/dotfiles/$LOCALAPPDATA/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/**)",
+      "Read(//c/Users/DK/dev/personal/dotfiles/$LOCALAPPDATA/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/**)",
+      "Read(//c/Users/DK/AppData/Local/Microsoft/Windows Terminal/Fragments/**)",
+      "Read(//c/ProgramData/Microsoft/Windows Terminal/**)",
+      "Read(//c/Users/DK/dev/personal/dotfiles/$LOCALAPPDATA/Microsoft/Windows Terminal/**)",
+      "Read(//c/Users/DK/scoop/apps/git/2.53.0/**)",
+      "Read(//c/Users/DK/scoop/apps/git/**)",
+      "Bash(python:*)",
+      "Bash(node:*)",
+      "Bash(nvim:*)",
+      "Bash(scoop install:*)",
+      "Bash(scoop:*)"
+    ]
+  }
+}
