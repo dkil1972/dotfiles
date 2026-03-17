@@ -15,6 +15,7 @@
         { "Name": "fzf", "Source": "main" },
         { "Name": "fd", "Source": "main" },
         { "Name": "delta", "Source": "main" },
-        { "Name": "jq", "Source": "main" }
+        { "Name": "jq", "Source": "main" },
+        { "Name": "nodejs", "Source": "main" }
     ]
 }

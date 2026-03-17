@@ -23,6 +23,11 @@ else
 fi
 echo ""
 
+# --- Scoop: use system 7zip if available ---
+if [[ -f "/c/Program Files/7-Zip/7z.exe" ]]; then
+  scoop config use_system_7zip true
+fi
+
 # --- Scoop packages ---
 SCOOPFILE="$WINDOWS_DIR/scoopfile.json"
 if [[ -f "$SCOOPFILE" ]]; then
