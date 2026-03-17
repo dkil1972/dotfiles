@@ -34,5 +34,5 @@ alias cls='clear'
 # goto directories
 alias df='cd ~/dev/personal/dotfiles'
 alias jst='cd ~/dev/javascript/job-search-toolkit'
-alias fmov='cd /c/Users/Dermot.Kilroy/Obsidian\ Vault/Obsidian\ SB/'
+alias fmov='cd ~/ObsidianVault/ObsidianSB'
 

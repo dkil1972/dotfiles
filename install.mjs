@@ -21,6 +21,7 @@ const SKIP = new Set([
   "package.json",
   "ttf-bitstream-vera-1.10",
   "nvim_config",
+  "obsidian",
   "windows",
 ]);
 
@@ -117,6 +118,16 @@ async function installDotfiles() {
     const nvimTarget = join(configDir, "nvim");
     mkdirSync(configDir, { recursive: true });
     replaceAll = await handleLink(nvimSource, nvimTarget, "~/.config/nvim", replaceAll);
+  }
+
+  // Obsidian hotkeys — symlink into vault's .obsidian directory
+  const obsidianVault = join(HOME, "ObsidianVault", "ObsidianSB", ".obsidian");
+  if (pathExists(obsidianVault)) {
+    const hotkeySource = join(DOTFILES_DIR, "obsidian", "hotkeys.json");
+    const hotkeyTarget = join(obsidianVault, "hotkeys.json");
+    replaceAll = await handleLink(hotkeySource, hotkeyTarget, "ObsidianSB hotkeys.json", replaceAll);
+  } else {
+    console.log("skipping Obsidian hotkeys (~/ObsidianSB vault not found)");
   }
 
   // Windows-specific configs
