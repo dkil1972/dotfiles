@@ -2,13 +2,26 @@
   "enabledPlugins": {
     "playwright@claude-plugins-official": true
   },
+  "effortLevel": "medium",
+  "skipDangerousModePermissionPrompt": true,
+  "editorMode": "vim",
+  "skipAutoPermissionPrompt": true,
   "mcpServers": {
     "playwright": {
       "command": "npx",
       "args": [
         "@playwright/mcp@latest",
-        "--headless"
+        "--headless",
+        "--browser",
+        "chromium",
+        "--executable-path",
+        "/home/dk/.cache/ms-playwright/chromium-1208/chrome-linux64/chrome"
       ]
     }
+  },
+  "tui": "fullscreen",
+  "statusLine": {
+    "type": "command",
+    "command": "node ~/.claude/statusline-command.js"
   }
 }
