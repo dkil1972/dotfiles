@@ -35,4 +35,52 @@ alias cls='clear'
 alias df='cd ~/dev/personal/dotfiles'
 alias jst='cd ~/dev/javascript/job-search-toolkit'
 alias fmov='cd ~/ObsidianVault/ObsidianSB'
+alias eh='cd /c/dev/FMFX/EngineeringHealth'
+
+alias ucs='pwsh ./claude-shared/update-claude-shared.ps1'
+# sbx <name> [run-sbx flags]  named clone sandbox for the current repo, e.g. sbx eh-a -Model opus
+# Resolves from the git toplevel so it works from any subdirectory.
+# unalias first: re-sourcing into a shell that still has the old `alias sbx=...`
+# would alias-expand `sbx() {` into a syntax error before the function is parsed.
+unalias sbx 2>/dev/null
+sbx() {
+  if [ -z "$1" ]; then echo "usage: sbx <sandbox-name> [-Model opus] [-Shell] [-Fresh] ..." >&2; return 1; fi
+  local name="$1"; shift
+  local root; root="$(git rev-parse --show-toplevel 2>/dev/null)" || { echo "sbx: not in a git repo" >&2; return 1; }
+  pwsh "$root/claude-shared/ralph-sandbox/run-sbx.ps1" -GitHubAuth -Clone -SandboxName "$name" "$@"
+}
+
+# --- EngineeringHealth report app ---
+# Shared runner: works from any dir; the C:/ path isn't mangled by MSYS.
+# Extra flags (--refresh, --reveal, --month YYYY-MM) pass straight through.
+_eh_run() { dotnet run --project "C:/dev/FMFX/EngineeringHealth/src/EngineeringHealth" -- "$@"; }
+
+# eht <team> [flags]  engineering health team: per-person (individual) report
+eht() {
+  if [ -z "$1" ]; then echo "usage: eht <team> [--refresh] [--reveal] [--month YYYY-MM]" >&2; return 1; fi
+  local team="$1"; shift
+  _eh_run --team "$team" --individual "$@"
+}
+
+# ehd [team] [flags]  delivery-level report (all teams if no team given)
+ehd() {
+  if [ -n "$1" ] && [ "${1#-}" = "$1" ]; then
+    local team="$1"; shift
+    _eh_run --team "$team" --delivery "$@"
+  else
+    _eh_run --delivery "$@"
+  fi
+}
+
+# ehk <KEY> [flags]  full status timeline for one ticket, e.g. ehk FMFX-15457
+ehk() {
+  if [ -z "$1" ]; then echo "usage: ehk <TICKET-KEY> [--refresh]" >&2; return 1; fi
+  _eh_run --ticket "$@"
+}
+
+# ehai <email> [flags]  AI impact profile for a developer
+ehai() {
+  if [ -z "$1" ]; then echo "usage: ehai <email> [--month YYYY-MM] [--reveal]" >&2; return 1; fi
+  _eh_run --ai-profile "$@"
+}
 
