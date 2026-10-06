@@ -38,16 +38,21 @@ alias fmov='cd ~/ObsidianVault/ObsidianSB'
 alias eh='cd /c/dev/FMFX/EngineeringHealth'
 
 alias ucs='pwsh ./claude-shared/update-claude-shared.ps1'
-# sbx <name> [run-sbx flags]  named clone sandbox for the current repo, e.g. sbx eh-a -Model opus
+# sbx <name> [-NoClone] [run-sbx flags]  named clone sandbox for the current repo, e.g. sbx eh-a -Model opus
+# -NoClone mounts the working tree directly, for local-only repos with no remote to push to.
 # Resolves from the git toplevel so it works from any subdirectory.
 # unalias first: re-sourcing into a shell that still has the old `alias sbx=...`
 # would alias-expand `sbx() {` into a syntax error before the function is parsed.
 unalias sbx 2>/dev/null
 sbx() {
-  if [ -z "$1" ]; then echo "usage: sbx <sandbox-name> [-Model opus] [-Shell] [-Fresh] ..." >&2; return 1; fi
+  if [ -z "$1" ]; then echo "usage: sbx <sandbox-name> [-NoClone] [-Model opus] [-Shell] [-Fresh] ..." >&2; return 1; fi
   local name="$1"; shift
   local root; root="$(git rev-parse --show-toplevel 2>/dev/null)" || { echo "sbx: not in a git repo" >&2; return 1; }
-  pwsh "$root/claude-shared/ralph-sandbox/run-sbx.ps1" -GitHubAuth -Clone -SandboxName "$name" "$@"
+  local clone=-Clone args=() arg
+  for arg in "$@"; do
+    if [ "$arg" = "-NoClone" ]; then clone=; else args+=("$arg"); fi
+  done
+  pwsh "$root/claude-shared/ralph-sandbox/run-sbx.ps1" -GitHubAuth $clone -SandboxName "$name" "${args[@]}"
 }
 
 # --- EngineeringHealth report app ---
