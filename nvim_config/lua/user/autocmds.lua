@@ -6,12 +6,13 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
--- Wrap text in markdown files
+-- Wrap text and enable treesitter highlighting in markdown files
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "markdown",
-  callback = function()
+  callback = function(args)
     vim.opt_local.wrap = true
     vim.opt_local.linebreak = true
+    vim.treesitter.start(args.buf)
   end,
 })
 

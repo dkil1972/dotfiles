@@ -219,7 +219,7 @@ Write-Host "Installed:"
 Write-Host "  - Scoop (package manager)"
 Write-Host "  - Git, NVM, Node.js LTS, pnpm"
 Write-Host "  - Claude Code"
-Write-Host "  - Dev tools (neovim, ripgrep, fzf, fd, delta, jq, lazygit)"
+Write-Host "  - Dev tools (neovim, ripgrep, fzf, fd, delta, jq, deno, lazygit)"
 Write-Host "  - Dotfile symlinks (terminal, vscode, nvim, git bash, claude)"
 if ($installWSL -eq 'y') {
     Write-Host "  - WSL2 + Ubuntu (reboot required)"
