@@ -8,6 +8,18 @@ return {
     branch = "0.1.x",
     cmd = "Telescope",
     dependencies = { "nvim-lua/plenary.nvim" },
+    opts = function()
+      local actions = require("telescope.actions")
+      return {
+        pickers = {
+          buffers = {
+            mappings = {
+              n = { ["dd"] = actions.delete_buffer },
+            },
+          },
+        },
+      }
+    end,
   },
   -- The main branch does not support lazy-loading
   { "nvim-treesitter/nvim-treesitter", lazy = false, build = ":TSUpdate" },
